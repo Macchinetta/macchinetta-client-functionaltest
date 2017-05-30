@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>slickgridのカラム入れ替え無効化</title>
+
+    <!-- SlickGrid用のスタイルシートの読み込み -->
+    <link rel="stylesheet" href="../lib/vendor/slickgrid/2.1.0/slick.grid.css" />
+
+    <link rel="stylesheet" href="css/not-reorder.css" />
+    </head>
+  <body>
+
+    <h1>slickgridのカラム入れ替え無効化</h1>
+
+    <!-- SlickGridテーブルの表示領域となる要素 -->
+    <!-- Macchinetta クライアント基本版 開発ガイドライン のサンプル -->
+    <!-- <div id="myGrid" class="grid" style="grid"></div> -->
+    <!-- htmlhint 対策 -> The id and class attribute values must be in lowercase and split by a dash. (id-class-value) -->
+    <div id="mygrid" class="grid" style="grid"></div>
+
+    <!-- 依存ライブラリの読み込み -->
+    <script src="../lib/vendor/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+    <script src="../lib/vendor/jquery.event.drag-drop/2.2/jquery.event.drag.js"></script>
+    <script src="../lib/vendor/jquery-ui/1.11.1/jquery-ui.min.js"></script>
+
+    <!-- SlickGridモジュールの読み込み -->
+    <script src="../lib/vendor/slickgrid/2.1.0/slick.core.js"></script>
+    <script src="../lib/vendor/slickgrid/2.1.0/slick.grid.js"></script>
+
+    <!-- 実装したJavaScriptファイルの読み込み -->
+    <script src="js/not-reorder.js"></script>
+  </body>
+</html>

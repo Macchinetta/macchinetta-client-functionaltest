@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Macchinettaクライアント　機能検証プログラム</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="title">
+        <a href="index.html"><img src="img/logo.png" alt="TOP" /></a>
+      </div>
+      <div class="title">
+        <a href="index.html">Macchinetta クライアント基本版 機能検証プログラム</a>
+      </div>
+    </div>
+    <hr />
+    <h2>手動試験</h2>
+    <a id="sample-html" href="#">手動試験用サンプル一覧</a>
+    <hr />
+    <h2>自動試験単実行</h2>
+    <a id="singleTest" href="#">自動試験単実行用サンプル一覧</a>
+    <hr />
+    <h2>自動試験</h2>
+    <button id="btn-test-exe">
+      自動試験実行
+    </button>
+    <button id="btn-evidence-save">
+      試験結果ログ保存
+    </button>
+    <hr />
+    <h2>自動試験結果一覧</h2>
+    <div class="top-frame">
+      <iframe id="top-frame" src="dummy.html" name="test" frameborder="no" class="top-frame">
+        iframe 対応のブラウザで見てください。
+      </iframe>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+
+  </body>
+
+</html>

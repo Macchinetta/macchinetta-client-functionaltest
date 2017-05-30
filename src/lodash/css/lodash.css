@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+/* lodash.css */
+
+div {
+  margin-bottom: 12px;
+}
+
+input {
+  width: 300px;
+  height: 24px;
+}

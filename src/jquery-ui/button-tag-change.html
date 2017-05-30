@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>span要素やdiv要素でのボタン</title>
+    <meta charset="utf-8">
+
+    <!-- jQuery UIのスタイルシートの読み込み -->
+    <link rel="stylesheet" href="../lib/vendor/jquery-ui/1.11.1/jquery-ui.min.css">
+  </head>
+  <body>
+
+    <h1>span要素やdiv要素でのボタン</h1>
+    <div>
+      <!-- div要素やspan要素からでもボタンを生成できる -->
+      <div class="buttonClass" id="div1">divボタン1</div>
+      <span class="buttonClass" id="span1">spanボタン1</span>
+    </div>
+    <div>
+      <!-- div要素やspan要素からでもボタンを生成できる -->
+      <div class="buttonClass" tabindex="1" id="div2">divボタン2</div>
+      <span class="buttonClass" tabindex="2" id="span2">spanボタン2</span>
+    </div>
+    <input type="text" id="keyup-status" value="" readonly="readonly"/><br>
+    <input type="text" id="keypress-status" value="" readonly="readonly"/><br>
+    <input type="text" id="keydown-status" value="" readonly="readonly"/><br>
+
+    <!-- jQueryとjQuery UIのJavaScript、独自に実装したJavaScriptの読み込み -->
+    <script src="../lib/vendor/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+    <script src="../lib/vendor/jquery-ui/1.11.1/jquery-ui.min.js"></script>
+    <script src="js/button-tag-change.js"></script>
+  </body>
+</html>

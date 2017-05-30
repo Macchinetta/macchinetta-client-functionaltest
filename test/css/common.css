@@ -1,0 +1,25 @@
+/*
+ * 共通CSS。
+ */
+
+.header {
+  display: table;
+}
+
+.title {
+  display: table-cell;
+  vertical-align: middle;
+  color: #2175ab;
+  font-size: 30px;
+}
+
+.title a {
+  color: #2175ab;
+  text-decoration: none;
+}
+
+.note {
+  padding-left: 10px;
+  color: #555555;
+  font-size: 14px;
+}

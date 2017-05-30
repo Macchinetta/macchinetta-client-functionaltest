@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>jQuery UI形式のスライダー</title>
+    <meta charset="utf-8">
+    <!-- jquery-uiのスタイルシートの読み込み -->
+    <link rel="stylesheet" href="../lib/vendor/jquery-ui/1.11.1/jquery-ui.min.css">
+    <!-- 独自に実装したスタイルシートの読み込み -->
+    <link rel="stylesheet" href="css/slider-event-check.css">
+
+  </head>
+  <body>
+    <h1>イベント発火順序確認用アプリ</h1>
+    <!-- ハンドルのステータス確認用テキストボックス -->
+    <label for="status">直前に操作したハンドルのステータス:</label><br>
+    <input type="text" id="status" readonly="readonly" style="width:500px;"/><br><br>
+    <!-- スライダー -->
+    <div id="slider-event"></div><br>
+    <!-- 変更ボタン -->
+    <button id="change_button">処理を実行</button>
+    <!-- jQuery、jQuery UIのJavaScriptの読み込み -->
+    <script src="../lib/vendor/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+    <script src="../lib/vendor/jquery-ui/1.11.1/jquery-ui.min.js"></script>
+    <!-- 独自に実装したJavaScriptの読み込み -->
+    <script src="js/slider-event-check.js"></script>
+  </body>
+</html>

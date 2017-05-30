@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>試験結果</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/es6-promise/dist/es6-promise.js"></script>
+
+    <script src="js/test.js"></script>
+    <script src="js/testcase/file-path.js"></script>
+    <script src="js/testcase/consts.js"></script>
+    <script src="js/testcase/utils.js"></script>
+
+    <!-- テストケース(UICP) -->
+    <script src="js/testcase/jquery-ui/test-button-basic.js"></script>
+    <script src="js/testcase/jquery-ui/test-button-buttonset.js"></script>
+    <script src="js/testcase/jquery-ui/test-button-tag-change.js"></script>
+    <script src="js/testcase/bootstrap/test-button-basic.js"></script>
+    <script src="js/testcase/bootstrap/test-button-buttonset.js"></script>
+    <script src="js/testcase/bootstrap/test-button-tag-change.js"></script>
+    <script src="js/testcase/jquery-ui/test-modal.js"></script>
+    <script src="js/testcase/bootstrap/test-modal-markup.js"></script>
+    <script src="js/testcase/bootstrap/test-modal-javascript.js"></script>
+    <script src="js/testcase/jquery-ui/test-modeless.js"></script>
+    <script src="js/testcase/bootstrap/test-breadcrumb.js"></script>
+    <script src="js/testcase/jquery-ui/test-selectmenu.js"></script>
+    <script src="js/testcase/bootstrap/test-dropdownmenu.js"></script>
+    <script src="js/testcase/jquery-ui/test-accordion-basic.js"></script>
+    <script src="js/testcase/jquery-ui/test-accordion-collapsible.js"></script>
+    <script src="js/testcase/jquery-ui/test-accordion-multiple.js"></script>
+    <script src="js/testcase/bootstrap/test-accordion.js"></script>
+    <script src="js/testcase/jquery-ui/test-tabs.js"></script>
+    <script src="js/testcase/bootstrap/test-tab.js"></script>
+    <script src="js/testcase/jquery-ui/test-slider.js"></script>
+    <script src="js/testcase/jquery-ui/test-slider-numeric.js"></script>
+    <script src="js/testcase/jquery-ui/test-slider-change-fontsize.js"></script>
+    <script src="js/testcase/jquery-ui/test-slider-labels.js"></script>
+    <script src="js/testcase/jquery-ui/test-slider-event-check.js"></script>
+    <script src="js/testcase/jquery-ui/test-slider-labels-change-interval.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-basic.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-holiday.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-holiday-add.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-locale-multiple.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-locale-multiple-ja-en-GB.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-range.js"></script>
+    <script src="js/testcase/jquery-ui/test-datepicker-locale.js"></script>
+    <script src="js/testcase/bootstrap-datepicker/test-bootstrap-datepicker-markup.js"></script>
+    <script src="js/testcase/bootstrap-datepicker/test-bootstrap-datepicker-javascript.js"></script>
+    <script src="js/testcase/jquery-ui/test-autocomplete.js"></script>
+    <script src="js/testcase/jquery-ui/test-progressbar.js"></script>
+    <script src="js/testcase/jquery-ui/test-progressbar-percent-display.js"></script>
+    <script src="js/testcase/bootstrap/test-progressbar.js"></script>
+    <script src="js/testcase/jquery-ui/test-drag-and-drop.js"></script>
+    <script src="js/testcase/jquery-ui/test-drag-and-drop-sortable.js"></script>
+    <script src="js/testcase/bootstrap/test-responsive-web-design.js"></script>
+
+    <!--テストケース(GRID) -->
+    <script src="js/testcase/slickgrid/test-insert-and-delete-row.js"></script>
+    <script src="js/testcase/tablesorter/test-insert-and-delete-row.js"></script>
+    <script src="js/testcase/slickgrid/test-move-row.js"></script>
+    <script src="js/testcase/slickgrid/test-fixed-header.js"></script>
+    <script src="js/testcase/tablesorter/test-fixed-header.js"></script>
+    <script src="js/testcase/slickgrid/test-pagination.js"></script>
+    <script src="js/testcase/tablesorter/test-pagination.js"></script>
+    <script src="js/testcase/slickgrid/test-sort.js"></script>
+    <script src="js/testcase/tablesorter/test-sort.js"></script>
+    <script src="js/testcase/tablesorter/test-multiple-sort.js"></script>
+    <script src="js/testcase/tablesorter/test-no-sort.js"></script>
+    <script src="js/testcase/slickgrid/test-col-sort.js"></script>
+    <script src="js/testcase/slickgrid/test-col-no-sort.js"></script>
+    <script src="js/testcase/slickgrid/test-copy-and-paste.js"></script>
+    <script src="js/testcase/slickgrid/test-slickgrid-with-ajax.js"></script>
+
+    <!--テストケース(CTRL) -->
+    <script src="js/testcase/jquery/test-enable-and-disable-button.js"></script>
+    <script src="js/testcase/jquery/test-prevent-continuous-click.js"></script>
+    <script src="js/testcase/jquery/test-prevent-continuous-click-for-a.js"></script>
+    <script src="js/testcase/jquery/test-demonstrate-through-asynchronous-communication.js"></script>
+    <script src="js/testcase/jquery/test-work-with-element.js"></script>
+    <script src="js/testcase/jquery/test-work-with-element-ajax.js"></script>
+    <script src="js/testcase/moment/test-convert-date.js"></script>
+    <script src="js/testcase/moment/test-check-date.js"></script>
+    <script src="js/testcase/moment/test-convert-time.js"></script>
+    <script src="js/testcase/moment/test-convert-zenkaku-hankaku.js"></script>
+    <script src="js/testcase/moment/test-convert-zenkaku-hankaku-for-katakana.js"></script>
+    <script src="js/testcase/parsleyjs/test-validation.js"></script>
+    <script src="js/testcase/parsleyjs/test-validation-locale.js"></script>
+
+    <script src="js/testcase/jquery/test-deferred-promise-async.js"></script>
+    <script src="js/testcase/jquery/test-deferred-promise.js"></script>
+    <script src="js/testcase/jquery/test-deferred-promise-branch-then.js"></script>
+    <script src="js/testcase/jquery/test-deferred-promise-branch-done.js"></script>
+    <script src="js/testcase/jquery/test-deferred-promise-parallel.js"></script>
+    <script src="js/testcase/jquery/test-deferred-promise-ajax.js"></script>
+
+    <!--テストケース(APND) -->
+    <script src="js/testcase/bootstrap-and-slickgrid-header/test-header-before.js"></script>
+    <script src="js/testcase/bootstrap-and-slickgrid-header/test-header-after.js"></script>
+    <script src="js/testcase/bootstrap-and-slickgrid-tab/test-tab-before.js"></script>
+    <script src="js/testcase/bootstrap-and-slickgrid-tab/test-tab-after.js"></script>
+    <script src="js/testcase/bootstrap-and-jquery-ui/test-modeless-before.js"></script>
+    <script src="js/testcase/bootstrap-and-jquery-ui/test-modeless-after.js"></script>
+    <script src="js/testcase/lodash/test-lodash.js"></script>
+    <script src="js/testcase/underscore-string/test-convert-number.js"></script>
+    <script src="js/testcase/underscore-string/test-padding.js"></script>
+    <script src="js/testcase/underscore-string/test-trimming.js"></script>
+
+  </head>
+  <body>
+
+    <div id="mocha">
+      <!-- テスト結果表示 -->
+    </div>
+
+    <!-- テスト実行 -->
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

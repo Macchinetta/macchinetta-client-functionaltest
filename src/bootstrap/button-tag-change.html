@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>span要素やdiv要素でのボタン</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="../lib/vendor/bootstrap/3.2.0/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    <h1>span要素やdiv要素でのボタン</h1>
+    <div>
+      <!-- div要素やspan要素からでもボタンを生成できる -->
+      <div type="button" class="btn btn-default" id="div1">divボタン1</div>
+      <span type="button" class="btn btn-default" id="span1">spanボタン1</span>
+    </div>
+    <div>
+      <!-- div要素やspan要素からでもボタンを生成できる -->
+      <div type="button" class="btn btn-default" tabindex="1" id="div2">divボタン2</div>
+      <span type="button" class="btn btn-default" tabindex="2" id="span2">spanボタン2</span>
+    </div>
+    <input type="text" id = "keypress-status" value="" readonly="readonly"/><br>
+    <input type="text" id = "keydown-status" value="" readonly="readonly"/><br>
+    <input type="text" id = "keyup-status" value="" readonly="readonly"/><br>
+
+    <script src="../lib/vendor/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+    <script src="../lib/vendor/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/button-tag-change.js"></script>
+  </body>
+</html>

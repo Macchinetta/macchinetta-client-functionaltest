@@ -1,0 +1,16 @@
+/*
+ * テスト結果表示用フレーム
+ */
+
+.top-frame {
+  width: 100%;
+  height: 500px;
+}
+
+h1 {
+  color: #2175ab;
+}
+
+body{
+  zoom: 100%;
+}

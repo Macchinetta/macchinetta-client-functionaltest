@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>コピー・ペースト無効化サンプル(INPUT,SELECTタグ)</title>
+    <link href="css/disable-input-select-element.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <input class="text-item"
+      type="text" value="すべてのキー操作を制御していない一行テキストボックス" />
+    <br />
+
+    <!-- キー制御を有効化するため class属性に "mousetrap" を指定 -->
+    <input class="text-item mousetrap"
+      type="text" value="コピーアンドペーストのキー操作 (Ctrl + c、Ctrl + v) を無効化している一行テキストボックス" />
+    <br />
+
+    <!-- キー制御を有効化するため class属性に "mousetrap" を指定 -->
+    <input id="input3" class="text-item mousetrap"
+      type="text" value="コピーアンドペーストの無効化に加え、ページ保存のキー操作 (Ctrl + s) で別の処理が起動するよう変更している一行テキストボックス" />
+    <input id="input-target" class="target-item" type="text" value="default" />
+    <br />
+
+    <!-- キー制御を有効化するため class属性に "mousetrap" を指定 -->
+    <select id="select3" class="select-item mousetrap" size="3">
+      <option>ページ保存のキー操作 (Ctrl + s) で別の処理が起動するよう</option>
+      <option>変更している</option>
+      <option>セレクトボックス</option>
+    </select>
+    <input id="select-target" class="target-item" type="text" value="default" />
+    <br />
+
+    <!-- Mousetrapと、独自に実装したJavaScriptを読み込む。 -->
+    <script src="../lib/vendor/mousetrap/1.4.6/mousetrap.js"></script>
+    <script src="js/disable-input-select-element.js"></script>
+  </body>
+</html>

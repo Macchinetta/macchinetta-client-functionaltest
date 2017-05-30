@@ -1,0 +1,27 @@
+.tabs-right .ui-tabs-panel {
+  margin-right: 5.5em;
+}
+
+.tabs-right .ui-tabs-nav {
+
+  width: 5em;
+  float: right;
+  padding: .2em .2em .2em 0px ;
+}
+
+.tabs-right .ui-tabs-nav .ui-state-default {
+
+  width: 100%;
+  border-left-width: 0;
+}
+
+.tabs-right .ui-tabs-nav .ui-state-default .ui-tabs-anchor {
+
+  width: 3em;
+}
+
+.tabs-right .ui-tabs-nav .ui-state-default.ui-tabs-active {
+
+  margin-left: -1px;
+  padding-left: 1px;
+}
