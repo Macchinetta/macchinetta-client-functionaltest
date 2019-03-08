@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -64,9 +65,9 @@
               * 2)モーダルダイアログの表示状態が'block'であること
               */
             var myModalClassName = myModal.className;
-            assert.equal(myModalClassName, 'modal in', 'UICP0103 001');
+            assert.equal(myModalClassName, 'modal in', 'UICP0203 001');
             var myModalStyleDdisplay = myModal.style.display;
-            assert.equal(myModalStyleDdisplay, 'block', 'UICP0103 001');
+            assert.equal(myModalStyleDdisplay, 'block', 'UICP0203 001');
           }
         },
 
@@ -80,10 +81,10 @@
               * 2)モーダルダイアログの表示状態が'none'であること
               */
             var myModalClassName = myModal.className;
-            assert.equal(myModalClassName, 'modal', 'UICP0103 002');
+            assert.equal(myModalClassName, 'modal', 'UICP0203 002');
 
             var myModalStyleDdisplay = myModal.style.display;
-            assert.equal(myModalStyleDdisplay, 'none', 'UICP0103 002');
+            assert.equal(myModalStyleDdisplay, 'none', 'UICP0203 002');
             done();
           },
           delay: 4000
@@ -117,9 +118,9 @@
             * 2)モーダルダイアログの表示状態が'block'であること
             */
           var myModalClassName = myModal.className;
-          assert.equal(myModalClassName, 'modal in', 'UICP0103 001');
+          assert.equal(myModalClassName, 'modal in', 'UICP0203 003');
           var myModalStyleDdisplay = myModal.style.display;
-          assert.equal(myModalStyleDdisplay, 'block', 'UICP0103 001');
+          assert.equal(myModalStyleDdisplay, 'block', 'UICP0203 003');
         },
         function () {
 
@@ -135,10 +136,10 @@
             * 2)モーダルダイアログの表示状態が'none'であること
             */
           var myModalClassName = myModal.className;
-          assert.equal(myModalClassName, 'modal', 'UICP0103 002');
+          assert.equal(myModalClassName, 'modal', 'UICP0203 004');
 
           var myModalStyleDdisplay = myModal.style.display;
-          assert.equal(myModalStyleDdisplay, 'none', 'UICP0103 002');
+          assert.equal(myModalStyleDdisplay, 'none', 'UICP0203 004');
         },
         function () {
           done();

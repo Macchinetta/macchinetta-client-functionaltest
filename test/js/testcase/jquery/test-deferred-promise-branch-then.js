@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -17,7 +18,7 @@
     doc: null
   };
 
-  describe('ASNC01 jQuery形式でコールバックの切り替え（then）が利用できる', function () {
+  describe('ASNC01 非同期処理のエラーハンドリングが利用できる', function () {
 
     // 試験対象サンプルプログラム。
     var sampleFileName = PATH.DEFERRED_PROMISE_BRANCH_THEN;
@@ -36,53 +37,53 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('ASNC0103 001 thenを利用してコールバックの切り替えができること', function (done) {
+    it('ASNC0103 001 catchを利用したエラーハンドリングができること', function (done) {
       this.timeout(0);
 
       var startButton = testObj.doc.querySelector('#deferred-start');
 
       // テスト実行
-      m.executeSequentialWithSpecificDelay([
-        {
-          fn: function () {
 
-            for (var j = 0;j <= 100; j++) {
+      m.executeSequentialWithDelay([
+        function () {
+          for (var j = 0;j <= 100; j++) {
 
-              // 1.「開始」ボタンを押下する
-              startButton.dispatchEvent(m.simulateEvent('click'));
+            // 1.「開始」ボタンを押下する
+            startButton.dispatchEvent(m.simulateEvent('click'));
+          }
+        },
+        function () {
 
+          // ■確認項目1:「resolveが実行されました。成功です。」と「rejectが実行されました。失敗です。」のメッセージが表示されることを確認する
+          var resolveStatus = false;
+          var rejectStatus = false;
+          var div = testObj.doc.querySelector('#deferred-area');
+          for (var i = 0; i < div.childElementCount; i++) {
+            var pv = div.children[i].textContent;
+            if (pv === 'resolveが実行されました。成功です。') {
+              resolveStatus = true;
+            } else if (pv === 'rejectが実行されました。失敗です。') {
+              rejectStatus = true;
+            }
+
+            /**
+              * isTrue : 成功時と失敗時のメッセージが表示されること。
+              * isFalse : 100回以内に(または何らかのエラーで)成功時と失敗時のメッセージを確認できなければ失敗とする。
+              */
+            if (resolveStatus && rejectStatus) {
+              assert.isTrue(true, MSG_DEFERRED_PROMISE_BRANCH_THEN);
+
+              // 成功時と失敗時のメッセージを確認できたらループを抜ける
+              break;
+            } else if (i === div.childElementCount - 1 && !(resolveStatus && rejectStatus)) {
+              assert.isFalse(true, MSG_DEFERRED_PROMISE_BRANCH_THEN);
             }
           }
-
         },
-        {
-          fn: function () {
-
-            // ■確認項目1:「成功」と「失敗」のメッセージが表示されることを確認する
-            var trueFlag = false;
-            var falseFlag = false;
-            var div = testObj.doc.querySelector('#deferred-area');
-            for (var i = 0; i < div.childElementCount; i++) {
-              var pv = div.children[i].textContent;
-              if (pv === '成功' || pv === '失敗') {
-                if (pv === '成功') {
-                  trueFlag = true;
-                } else {
-                  falseFlag = true;
-                }
-              }
-            }
-            if (trueFlag && falseFlag) {
-              assert.isTrue(true, MSG_DEFERRED_PROMISE_BRANCH_THEN);
-              done();
-            } else {
-              console.log('random values are all true/false.');
-              throw new Error('random values are all true/false,please try again.');
-            }
-          },
-          delay:3000
+        function () {
+          done();
         }
-      ], 0);
+      ], 2000);
     });
 
     // ----------------------- テストケース -----------------------

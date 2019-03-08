@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -51,7 +52,7 @@
               * 1)プログレスバーのwidthが''であること
               */
             var progressBarStyleDdisplay = progressBar.style.width;
-            assert.equal(progressBarStyleDdisplay, '', 'UICP0901 001');
+            assert.equal(progressBarStyleDdisplay, '', 'UICP1203 001');
           }
         },
         {
@@ -64,7 +65,7 @@
               * 1)プログレスバーのwidthが'100%'であること
               */
             var progressBarStyleDdisplay = progressBar.style.width;
-            assert.equal(progressBarStyleDdisplay, '100%', 'UICP0901 002');
+            assert.equal(progressBarStyleDdisplay, '100%', 'UICP1203 002');
             done();
           },
           delay: 12000

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -62,7 +63,7 @@
 
             // ■確認項目1
             // ダイアログが表示されることを確認する。
-            var myModalStyleDisplay = myModal.style.display;
+            var myModalStyleDisplay = testObj.win.getComputedStyle(myModal).display;
             assert.equal(myModalStyleDisplay, 'block', MSG_JQUERY_UI_MODAL);
           },
           delay: 100
@@ -74,7 +75,7 @@
 
             // ■確認項目2
             // ダイアログが表示されないことを確認する。
-            var myModalStyleDisplay = myModal.style.display;
+            var myModalStyleDisplay = testObj.win.getComputedStyle(myModal).display;
             assert.equal(myModalStyleDisplay, 'none', MSG_JQUERY_UI_MODAL);
             done();
           },
@@ -108,9 +109,9 @@
           var myModalClassName = myModal.className;
           assert.equal(
             myModalClassName,
-            'ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable',
+            'ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable ui-resizable',
             MSG_JQUERY_UI_MODAL);
-          var myModalStyleDisplay = myModal.style.display;
+          var myModalStyleDisplay = testObj.win.getComputedStyle(myModal).display;
           assert.equal(myModalStyleDisplay, 'block', MSG_JQUERY_UI_MODAL);
         },
         function () {
@@ -124,7 +125,7 @@
           // ■確認項目2
           // ダイアログが表示されないことを確認する。
 
-          var myModalStyleDisplay = myModal.style.display;
+          var myModalStyleDisplay = testObj.win.getComputedStyle(myModal).display;
           assert.equal(myModalStyleDisplay, 'none', MSG_JQUERY_UI_MODAL);
         },
         function () {

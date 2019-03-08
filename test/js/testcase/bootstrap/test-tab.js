@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -57,20 +58,20 @@
             * 4)タブ1、タブ2の各パネルの表示状態がそれぞれ'block'、'none'であること
             */
           var tab1PaneClassName = tab1Pane.className;
-          assert.equal(tab1PaneClassName, 'tab-pane active', 'UICP0601 001');
+          assert.equal(tab1PaneClassName, 'tab-pane active', 'UICP0705 001');
 
           var tab2PaneClassName = tab2Pane.className;
-          assert.equal(tab2PaneClassName, 'tab-pane', 'UICP0601 001');
+          assert.equal(tab2PaneClassName, 'tab-pane', 'UICP0705 001');
 
           var tab1PaneTop = tabs[0].getBoundingClientRect().top;
           var tab2PaneTop = tabs[1].getBoundingClientRect().top;
-          assert.equal(tab1PaneTop, tab2PaneTop, 'UICP0601 001');
+          assert.equal(tab1PaneTop, tab2PaneTop, 'UICP0705 001');
 
           var tab1PaneStyle = testObj.win.getComputedStyle(tab1Pane).display;
-          assert.equal(tab1PaneStyle, 'block', 'UICP0601 001');
+          assert.equal(tab1PaneStyle, 'block', 'UICP0705 001');
 
           var tab2PaneStyle = testObj.win.getComputedStyle(tab2Pane).display;
-          assert.equal(tab2PaneStyle, 'none', 'UICP0601 001');
+          assert.equal(tab2PaneStyle, 'none', 'UICP0705 001');
         },
         function () {
 
@@ -87,20 +88,20 @@
             * 4)タブ1、タブ2の各パネルの表示状態がそれぞれ'none'、'block'であること
             */
           var tab1PaneClassName = tab1Pane.className;
-          assert.equal(tab1PaneClassName, 'tab-pane', 'UICP0601 002');
+          assert.equal(tab1PaneClassName, 'tab-pane', 'UICP0705 002');
 
           var tab2PaneClassName = tab2Pane.className;
-          assert.equal(tab2PaneClassName, 'tab-pane active', 'UICP0601 002');
+          assert.equal(tab2PaneClassName, 'tab-pane active', 'UICP0705 002');
 
           var tab1PaneTop = tabs[0].getBoundingClientRect().top;
           var tab2PaneTop = tabs[1].getBoundingClientRect().top;
-          assert.equal(tab1PaneTop, tab2PaneTop, 'UICP0601 002');
+          assert.equal(tab1PaneTop, tab2PaneTop, 'UICP0705 002');
 
           var tab1PaneStyle = testObj.win.getComputedStyle(tab1Pane).display;
-          assert.equal(tab1PaneStyle, 'none', 'UICP0601 002');
+          assert.equal(tab1PaneStyle, 'none', 'UICP0705 002');
 
           var tab2PaneStyle = testObj.win.getComputedStyle(tab2Pane).display;
-          assert.equal(tab2PaneStyle, 'block', 'UICP0601 002');
+          assert.equal(tab2PaneStyle, 'block', 'UICP0705 002');
         },
         function () {
           done();

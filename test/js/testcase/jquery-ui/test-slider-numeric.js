@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -41,7 +42,8 @@
     it('UICP0802 001 スライダーのオプションが利用できること', function (done) {
       this.timeout(0);
       var sliderValue = testObj.doc.querySelector('#value');
-      var sliderNumDiv = testObj.doc.querySelector('#slider-numeric > div');
+      var sliderHeight = testObj.doc.querySelector('#slider-numeric > div');
+      var sliderHeightColor = testObj.win.getComputedStyle(sliderHeight).backgroundColor;
 
       // テスト実行
       m.executeSequentialWithDelay([
@@ -51,11 +53,10 @@
           /**
             * ■確認項目1:初期表示の際、オプションで設定した初期値にスライダーがあることを確認する
             * 1)テキストボックスの値が'25'であること
-            * 2)スライダーの背景色が'rgb(246, 168, 40)'であること
+            * 2)スライダーの背景色が'rgb(233, 233, 233)'であること
             */
-          var sliderNumDivBack = testObj.win.getComputedStyle(sliderNumDiv).backgroundColor;
-          assert.equal(sliderValue.value, '25');
-          assert.equal(sliderNumDivBack, 'rgb(246, 168, 40)', MSG_JQUERY_UI_SLIDER_NUMBERIC);
+          assert.equal(sliderValue.value, '25', MSG_JQUERY_UI_SLIDER_NUMBERIC);
+          assert.equal(sliderHeightColor, 'rgb(233, 233, 233)', MSG_JQUERY_UI_SLIDER_NUMBERIC);
         },
         function () {
           done();
@@ -66,36 +67,40 @@
     // ----------------------- テストケース -----------------------
     it('UICP0802 002 テキストボックスの値が10になること', function (done) {
       this.timeout(0);
-      var span = testObj.doc.querySelector('#slider-numeric > span');
+      var handle = testObj.doc.querySelector('#slider-numeric > span');
+      var sliderValue = testObj.doc.querySelector('#value');
 
       // ドラッグスタートとなる座標を取得
-      var startY = span.getBoundingClientRect().top;
+      var startX = handle.getBoundingClientRect().left;
+      var startY = handle.getBoundingClientRect().top;
 
       // ドロップ対象となる座標を取得
-      var endY = span.getBoundingClientRect().top + 75;
+      /**
+      * ハンドルを初期位置から一番下まで動かす場合の移動幅を75pxとする。
+      * これは、ハンドルの初期位置が一番下から75pxの位置にあるためである。
+      */
+      var endX = handle.getBoundingClientRect().left;
+      var endY = handle.getBoundingClientRect().top + 75;
 
       m.executeSequentialWithDelay([
 
-        // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-        function () {
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
         function () {
 
           //1.スライダーをドラッグする
           var downevent = m.simulateEvent('mousedown', {
-            clientY: startY,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientY: endY,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
         function () {
 
@@ -104,10 +109,9 @@
             * 1)スライダーの位置が'0%'であること
             * 2)テキストボックスの値が'10'であること
             */
-          var sliderValue = testObj.doc.querySelector('#value');
-          var spanLeft = span.style.bottom;
-          assert.equal(spanLeft, '0%', MSG_JQUERY_UI_SLIDER_NUMBERIC);
-          assert.equal(sliderValue.value, '10');
+          var handleBottom = handle.style.bottom;
+          assert.equal(handleBottom, '0%', MSG_JQUERY_UI_SLIDER_NUMBERIC);
+          assert.equal(sliderValue.value, '10', MSG_JQUERY_UI_SLIDER_NUMBERIC);
         },
         function () {
           done();
@@ -118,36 +122,40 @@
     // ----------------------- テストケース -----------------------
     it('UICP0802 003 テキストボックスの値が50になること', function (done) {
       this.timeout(0);
-      var span = testObj.doc.querySelector('#slider-numeric > span');
+      var handle = testObj.doc.querySelector('#slider-numeric > span');
+      var sliderValue = testObj.doc.querySelector('#value');
 
       // ドラッグスタートとなる座標を取得
-      var startY = span.getBoundingClientRect().top;
+      var startX = handle.getBoundingClientRect().left;
+      var startY = handle.getBoundingClientRect().top;
 
       // ドロップ対象となる座標を取得
-      var endY = span.getBoundingClientRect().top - 200;
+      /**
+      * ハンドルを初期位置から一番上まで動かす場合の移動幅を125pxとする。
+      * これは、ハンドルの初期位置が一番上から125pxの位置にあるためである。
+      */
+      var endX = handle.getBoundingClientRect().left;
+      var endY = handle.getBoundingClientRect().top - 125;
 
       m.executeSequentialWithDelay([
 
-        // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-        function () {
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
         function () {
 
           //1.スライダーをドラッグする
           var downevent = m.simulateEvent('mousedown', {
-            clientY: startY,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientY: endY,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
         function () {
 
@@ -156,10 +164,9 @@
             * 1)スライダーの位置が'100%'であること
             * 2)テキストボックスの値が'50'であること
             */
-          var sliderValue = testObj.doc.querySelector('#value');
-          var spanLeft = span.style.bottom;
-          assert.equal(spanLeft, '100%', MSG_JQUERY_UI_SLIDER_NUMBERIC);
-          assert.equal(sliderValue.value, '50');
+          var handleBottom = handle.style.bottom;
+          assert.equal(handleBottom, '100%', MSG_JQUERY_UI_SLIDER_NUMBERIC);
+          assert.equal(sliderValue.value, '50', MSG_JQUERY_UI_SLIDER_NUMBERIC);
         },
         function () {
           done();

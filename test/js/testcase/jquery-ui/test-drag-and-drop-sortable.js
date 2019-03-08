@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -65,13 +66,13 @@
 
           // 1.項目1－1をドラッグする
           list1No1.dispatchEvent(m.simulateEvent('mousedown', {
-            clientX: list1No1Left,
-            clientY: list1No1Top,
+            pageX: list1No1Left,
+            pageY: list1No1Top,
             which: 1
           }));
           list1No1.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: list1No3Left,
-            clientY: list1No3Bottom - 1,
+            pageX: list1No3Left,
+            pageY: list1No3Bottom - 1,
             which: 1
           }));
         },
@@ -91,7 +92,7 @@
             * 1)テキストの値が'項目 1-1'を含んでいること
             */
           var list1No3Text = list1No3.innerHTML;
-          expect(list1No3Text, 'UICP1002 001').to.contain('項目 1-1');
+          expect(list1No3Text, 'UICP1302 001').to.contain('項目 1-1');
         },
         function () {
           done();
@@ -129,18 +130,18 @@
 
           // 1.項目1－1をドラッグする
           list1No1.dispatchEvent(m.simulateEvent('mousedown', {
-            clientX: list1No1Left,
-            clientY: list1No1Top,
+            pageX: list1No1Left,
+            pageY: list1No1Top,
             which: 1
           }));
           list1No1.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: list1No1Left,
-            clientY: list2No1Bottom,
+            pageX: list1No1Left,
+            pageY: list2No1Bottom,
             which: 1
           }));
           list1No1.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: list2No1Left,
-            clientY: list2No1Bottom,
+            pageX: list2No1Left,
+            pageY: list2No1Bottom,
             which: 1
           }));
         },
@@ -160,7 +161,7 @@
             * 1)テキストの値が'項目 1-1'を含んでいること
             */
           var list2No1Text = list2No1.innerHTML;
-          expect(list2No1Text, 'UICP1002 001').to.contain('項目 1-1');
+          expect(list2No1Text, 'UICP1302 002').to.contain('項目 1-1');
         },
         function () {
           done();

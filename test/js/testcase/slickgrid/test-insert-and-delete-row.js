@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -89,7 +90,7 @@
             * 1)先頭行のTitleセルの値が'タスク 1'になっていること
             */
           var firstRowTitle = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:first-child');
-          assert.equal(firstRowTitle.textContent, 'タスク 1', 'GRID0102 001');
+          assert.equal(firstRowTitle.textContent, 'タスク 1', 'GRID0101 002');
         },
         function () {
           done();
@@ -135,7 +136,7 @@
             * 1)先頭行のTitleセルの値が'Macchinetta'になっていること
             */
           var firstRowTitle = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:first-child');
-          assert.equal(firstRowTitle.textContent, 'Macchinetta', 'GRID0103 001');
+          assert.equal(firstRowTitle.textContent, 'Macchinetta', 'GRID0101 003');
         },
         function () {
           done();
@@ -171,7 +172,7 @@
             * 1)先頭行のTitleセルの値が'Macchinetta'になっていること
             */
           var firstRowTitle = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:first-child');
-          assert.equal(firstRowTitle.textContent, 'Macchinetta', 'GRID0104 001');
+          assert.equal(firstRowTitle.textContent, 'Macchinetta', 'GRID0101 004');
         },
         function () {
           done();

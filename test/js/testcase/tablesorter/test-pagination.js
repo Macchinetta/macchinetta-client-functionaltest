@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -64,24 +65,24 @@
             * 6)ページ数のプルダウンが'2'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:nth-child(11) td:first-child');
-          assert.equal(firstFamilyCell.textContent, '西本', 'GRID0404 001');
+          assert.equal(firstFamilyCell.textContent, '西本', 'GRID0402 001');
 
           var beforeFirstFamilyCell = testObj.doc.querySelector('tr:nth-child(10)');
           var beforeFirstFamilyCellStyle = testObj.win.getComputedStyle(beforeFirstFamilyCell).display;
-          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0404 001');
+          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0402 001');
 
           var lastFamilyCell = testObj.doc.querySelector('tr:nth-child(20) td:first-child');
-          assert.equal(lastFamilyCell.textContent, '望月', 'GRID0404 001');
+          assert.equal(lastFamilyCell.textContent, '望月', 'GRID0402 001');
 
           var afterLastFamilyCell = testObj.doc.querySelector('tr:nth-child(21)');
           var afterLastFamilyCellStyle = testObj.win.getComputedStyle(afterLastFamilyCell).display;
-          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0404 001');
+          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0402 001');
 
           var display = testObj.doc.querySelector('#tablesorter_pager_info');
-          assert.equal(display.textContent, '11 to 20 of 59 rows', 'GRID0404 001');
+          assert.equal(display.textContent, '11 to 20 of 59 rows', 'GRID0402 001');
 
           var pulldown = testObj.doc.querySelector('.gotoPage');
-          assert.equal(pulldown.value, '2', 'GRID0404 001');
+          assert.equal(pulldown.value, '2', 'GRID0402 001');
         },
         function () {
 
@@ -104,20 +105,20 @@
             * 5)ページ数のプルダウンが'6'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:nth-child(51) td:first-child');
-          assert.equal(firstFamilyCell.textContent, '上村', 'GRID0404 002');
+          assert.equal(firstFamilyCell.textContent, '上村', 'GRID0402 002');
 
           var beforeFirstFamilyCell = testObj.doc.querySelector('tr:nth-child(50)');
           var beforeFirstFamilyCellStyle = testObj.win.getComputedStyle(beforeFirstFamilyCell).display;
-          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0404 002');
+          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0402 002');
 
           var lastFamilyCell = testObj.doc.querySelector('tr:nth-child(59) td:first-child');
-          assert.equal(lastFamilyCell.textContent, '中島', 'GRID0404 002');
+          assert.equal(lastFamilyCell.textContent, '中島', 'GRID0402 002');
 
           var display = testObj.doc.querySelector('#tablesorter_pager_info');
-          assert.equal(display.textContent, '51 to 59 of 59 rows', 'GRID0404 002');
+          assert.equal(display.textContent, '51 to 59 of 59 rows', 'GRID0402 002');
 
           var pulldown = testObj.doc.querySelector('.gotoPage');
-          assert.equal(pulldown.value, '6', 'GRID0404 002');
+          assert.equal(pulldown.value, '6', 'GRID0402 002');
         },
         function () {
 
@@ -142,24 +143,24 @@
             * 6)ページ数のプルダウンが'5'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:nth-child(41) td:first-child');
-          assert.equal(firstFamilyCell.textContent, '小柳', 'GRID0404 003');
+          assert.equal(firstFamilyCell.textContent, '小柳', 'GRID0402 003');
 
           var beforeFirstFamilyCell = testObj.doc.querySelector('tr:nth-child(40)');
           var beforeFirstFamilyCellStyle = testObj.win.getComputedStyle(beforeFirstFamilyCell).display;
-          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0404 003');
+          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0402 003');
 
           var lastFamilyCell = testObj.doc.querySelector('tr:nth-child(50) td:first-child');
-          assert.equal(lastFamilyCell.textContent, '伊藤', 'GRID0404 003');
+          assert.equal(lastFamilyCell.textContent, '伊藤', 'GRID0402 003');
 
           var afterLastFamilyCell = testObj.doc.querySelector('tr:nth-child(51)');
           var afterLastFamilyCellStyle = testObj.win.getComputedStyle(afterLastFamilyCell).display;
-          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0404 003');
+          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0402 003');
 
           var display = testObj.doc.querySelector('#tablesorter_pager_info');
-          assert.equal(display.textContent, '41 to 50 of 59 rows', 'GRID0404 003');
+          assert.equal(display.textContent, '41 to 50 of 59 rows', 'GRID0402 003');
 
           var pulldown = testObj.doc.querySelector('.gotoPage');
-          assert.equal(pulldown.value, '5', 'GRID0404 003');
+          assert.equal(pulldown.value, '5', 'GRID0402 003');
         },
         function () {
 
@@ -182,20 +183,20 @@
             * 5)ページ数のプルダウンが'1'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:first-child td:first-child');
-          assert.equal(firstFamilyCell.textContent, '毛利', 'GRID0404 004');
+          assert.equal(firstFamilyCell.textContent, '毛利', 'GRID0402 004');
 
           var lastFamilyCell = testObj.doc.querySelector('tr:nth-child(10) td:first-child');
-          assert.equal(lastFamilyCell.textContent, '山峰', 'GRID0404 004');
+          assert.equal(lastFamilyCell.textContent, '山峰', 'GRID0402 004');
 
           var afterLastFamilyCell = testObj.doc.querySelector('tr:nth-child(11)');
           var afterLastFamilyCellStyle = testObj.win.getComputedStyle(afterLastFamilyCell).display;
-          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0404 004');
+          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0402 004');
 
           var display = testObj.doc.querySelector('#tablesorter_pager_info');
-          assert.equal(display.textContent, '1 to 10 of 59 rows', 'GRID0404 004');
+          assert.equal(display.textContent, '1 to 10 of 59 rows', 'GRID0402 004');
 
           var pulldown = testObj.doc.querySelector('.gotoPage');
-          assert.equal(pulldown.value, '1', 'GRID0404 004');
+          assert.equal(pulldown.value, '1', 'GRID0402 004');
         },
         function () {
 
@@ -221,24 +222,24 @@
             * 6)ページ数のプルダウンが'2'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:nth-child(11) td:first-child');
-          assert.equal(firstFamilyCell.textContent, '西本', 'GRID0404 005');
+          assert.equal(firstFamilyCell.textContent, '西本', 'GRID0402 005');
 
           var beforeFirstFamilyCell = testObj.doc.querySelector('tr:nth-child(10)');
           var beforeFirstFamilyCellStyle = testObj.win.getComputedStyle(beforeFirstFamilyCell).display;
-          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0404 005');
+          assert.equal(beforeFirstFamilyCellStyle, 'none', 'GRID0402 005');
 
           var lastFamilyCell = testObj.doc.querySelector('tr:nth-child(20) td:first-child');
-          assert.equal(lastFamilyCell.textContent, '望月', 'GRID0404 005');
+          assert.equal(lastFamilyCell.textContent, '望月', 'GRID0402 005');
 
           var afterLastFamilyCell = testObj.doc.querySelector('tr:nth-child(21)');
           var afterLastFamilyCellStyle = testObj.win.getComputedStyle(afterLastFamilyCell).display;
-          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0404 005');
+          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0402 005');
 
           var display = testObj.doc.querySelector('#tablesorter_pager_info');
-          assert.equal(display.textContent, '11 to 20 of 59 rows', 'GRID0404 005');
+          assert.equal(display.textContent, '11 to 20 of 59 rows', 'GRID0402 005');
 
           var pulldown = testObj.doc.querySelector('.gotoPage');
-          assert.equal(pulldown.value, '2', 'GRID0404 005');
+          assert.equal(pulldown.value, '2', 'GRID0402 005');
         },
         function () {
           done();
@@ -269,14 +270,14 @@
             * 3)現在の表示ページが'1 to 20 of 59 rows'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:nth-child(20) td:first-child');
-          assert.equal(firstFamilyCell.textContent, '望月', 'GRID0405 001');
+          assert.equal(firstFamilyCell.textContent, '望月', 'GRID0402 006');
 
           var afterLastFamilyCell = testObj.doc.querySelector('tr:nth-child(21)');
           var afterLastFamilyCellStyle = testObj.win.getComputedStyle(afterLastFamilyCell).display;
-          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0405 001');
+          assert.equal(afterLastFamilyCellStyle, 'none', 'GRID0402 006');
 
           var display = testObj.doc.querySelector('#tablesorter_pager_info');
-          assert.equal(display.textContent, '1 to 20 of 59 rows', 'GRID0405 001');
+          assert.equal(display.textContent, '1 to 20 of 59 rows', 'GRID0402 006');
         },
         function () {
           done();

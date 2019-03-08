@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 // bootstrap-datepicker-javascript.js
 
@@ -11,7 +12,7 @@ $(function () {
   $('#datepicker').datepicker({
     format: 'yyyy/mm/dd',
     language: 'ja',
-    orientation: 'top auto',
+    orientation: 'buttom auto',
     autoclose: true
   });
 });

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -40,52 +41,35 @@
     // ----------------------- テストケース -----------------------
     it('UICP0806 001 設定した目盛り間隔で目盛りが表示されること', function (done) {
       this.timeout(0);
-      var label = testObj.doc.querySelector('#slider-labels');
-      var span = testObj.doc.querySelector('#slider-labels > span');
-      var label1 = testObj.doc.querySelector('#slider-labels > label:nth-child(2)');
-      var label2 = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-      var label3 = testObj.doc.querySelector('#slider-labels > label:nth-child(4)');
+      var handle = testObj.doc.querySelector('#slider-labels > span');
+      var labels = testObj.doc.querySelectorAll('#slider-labels > label');
 
       // ドラッグスタートとなる座標を取得
-      var startX = span.getBoundingClientRect().left;
+      var startX = handle.getBoundingClientRect().left;
+      var startY = handle.getBoundingClientRect().top;
 
       // ドロップ対象となる座標を取得
       /**
-      * 59の値決定について：
-      *  スライダーを右に一つ動かすためには、
-      *   ｛(次の移動位置までの幅／ 2 ) - 1 ＜ クリック位置 ＜ (次の次の移動位置までの幅／ 2 )｝
-      *  上記範囲でスライダーを動かす必要がある。
-      *  ここでスライダー幅を400とし、移動可能数を10とすると
-      *  (次の移動位置までの幅／ 2 ) - 1 : (400/10/2) - 1 = 19
-      *  (次の次の移動位置までの幅／ 2 ) : (400/10/2)*2 - 1 = 39
-      *  したがって、スライダーを右に一つ移動する際の移動位置は
-      *  「19 < 移動位置 < 39」
-      *  となり、中間点の29をとることとした。
+      * ハンドルを初期位置から50%の位置まで動かす場合の移動幅を200pxとする。
+      * これは、スライダー幅が400pxであり、ハンドルの初期位置が一番左にあるためである。
       */
-      var endX = span.getBoundingClientRect().left + 29;
+      var endX = handle.getBoundingClientRect().left + 200;
+      var endY = handle.getBoundingClientRect().top;
 
       m.executeSequentialWithDelay([
 
         function () {
 
-          //スライダーの幅を400に設定
-          testObj.doc.getElementById('slider-labels').style.width = '400px';
-        },
-        function () {
-
-          // ■確認項目1： 0、5、10の3つのラベルだけがそれぞれのスライダー停止位置の下に表示されていること
-          var labels = label.childNodes;
+          // ■確認項目1： 0、5、10の三つのラベルだけが表示されていること
           var labelCount = 0;
           for (var i = 0; i < labels.length; i++) {
-            if (labels[i].nodeName === 'LABEL') {
-              labelCount++;
+            labelCount++;
 
-              /**
-              * 1)isAbove : スライダーの下に目盛りがあることを確認する。
-              */
-              assert.isAbove(labels[i].getBoundingClientRect().top,
-              label.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-            }
+            /**
+            * 1)isAbove : スライダーの下に目盛りがあることを確認する。
+            */
+            assert.isAbove(labels[i].getBoundingClientRect().top,
+              handle.getBoundingClientRect().bottom, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
           }
 
           /**
@@ -98,319 +82,95 @@
           * 2)equal : 表示する二つ目の目盛りの位置を確認する。
           * 3)equal : 表示する三つ目の目盛りの位置を確認する。
           */
-          assert.equal(label1.style.cssText, 'left: 0%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(label2.style.cssText, 'left: 50%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(label3.style.cssText, 'left: 100%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(labels[0].style.left, '0%', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(labels[1].style.left, '50%', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(labels[2].style.left, '100%', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
 
           /**
           * 1)equal : 表示する一つ目の目盛りの内容を確認する。
           * 2)equal : 表示する二つ目の目盛りの内容を確認する。
           * 3)equal : 表示する三つ目の目盛りの内容を確認する。
           */
-          assert.equal(label1.textContent, '0', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(label2.textContent, '5', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(label3.textContent, '10', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(labels[0].textContent, '0', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(labels[1].textContent, '5', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(labels[2].textContent, '10', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
 
         },
         function () {
 
-          //1.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: startX,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: endX,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-1：スライダーが２段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
+          // ■確認項目2：0、5、10のラベルがそれぞれハンドルの0%、50%、100%の停止位置の下に表示されていること
 
           /**
-          * 1)isAbove : 二つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 二つ目の目盛りの位置を確認する。
+          * 1)equal : ハンドルと一つ目の目盛りの横座標が等しいことを確認する。
+          * 2)equal : ハンドルが0%の位置にあることを確認する。
           */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 10%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
+          assert.equal(handle.style.left, labels[0].style.left, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(handle.style.left, '0%', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
         },
+
         function () {
 
-          //2.スライダーを一つ右に移動する。
+          //1.スライダーを50%の位置に移動する。
           var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
-        function () {
 
-          // ■確認項目2-2：スライダーが３段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
+        function () {
 
           /**
-          * 1)isAbove : 三つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 三つ目の目盛りの位置を確認する。
+          * 1)equal : ハンドルと二つ目の目盛りの横座標が等しいことを確認する。
+          * 2)equal : ハンドルが50%の位置にあることを確認する。
           */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 20%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
+          assert.equal(handle.style.left, labels[1].style.left, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(handle.style.left, '50%', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
         },
+
         function () {
 
-          //3.スライダーを一つ右に移動する。
+          //2.スライダーを100%の位置に移動する。
+          /**
+          * ハンドルを50%の位置から100%の位置まで動かす場合の移動幅を200pxとする。
+          * これは、スライダー幅が400pxであり、ハンドルを50%分移動させるためである。
+          */
+          startX = endX;
+          endX = endX + 200;
+
           var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
-        function () {
 
-          // ■確認項目2-3：スライダーが４段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
+        function () {
 
           /**
-          * 1)isAbove : 四つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 四つ目の目盛りの位置を確認する。
+          * 1)equal : ハンドルと三つ目の目盛りの横座標が等しいことを確認する。
+          * 2)equal : ハンドルが100%の位置にあることを確認する。
           */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 30%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //4.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-4：スライダーが５段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 五つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 五つ目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 40%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //5.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-5：スライダーが６段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 六つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 六つ目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 50%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //6.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-6：スライダーが７段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 七つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 七つ目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 60%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //7.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-7：スライダーが８段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 八つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 八つ目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 70%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //8.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-8：スライダーが９段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 九つ目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 九つ目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 80%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //9.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-9：スライダーが１０段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 十個目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 十個目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 90%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
-        },
-        function () {
-
-          //10.スライダーを一つ右に移動する。
-          var downevent = m.simulateEvent('mousedown', {
-            clientX: span.getBoundingClientRect().left,
-            which: 1
-          });
-          span.dispatchEvent(downevent);
-          var moveevent = m.simulateEvent('mousemove', {
-            clientX: span.getBoundingClientRect().left + 59,
-            which: 1
-          });
-          span.dispatchEvent(moveevent);
-          var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
-        },
-        function () {
-
-          // ■確認項目2-10：スライダーが１１段階目の停止位置に移動すること
-          var label = testObj.doc.querySelector('#slider-labels > label:nth-child(3)');
-
-          /**
-          * 1)isAbove : 十一個目の目盛りがspanの下にあることを確認する。
-          * 2)equal : 十一個目の目盛りの位置を確認する。
-          */
-          assert.isAbove(label.getBoundingClientRect().top,
-          span.getBoundingClientRect().top, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-          assert.equal(span.style.cssText, 'left: 100%;', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
-
+          assert.equal(handle.style.left, labels[2].style.left, MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
+          assert.equal(handle.style.left, '100%', MSG_JQUERY_UI_SLIDER_LABELS_CHANGE_INTERVAL);
         },
         function () {
           done();

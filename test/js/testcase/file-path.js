@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /*
  * 試験対象(サンプル)ファイルのパスを定義するjs。
@@ -17,10 +18,10 @@ window.PATH = {
   // 3.2. ボタン
   JQUERY_UI_BUTTONBASIC : 'jquery-ui/button-basic.html',
   JQUERY_UI_BUTTON_TAG_CHANGE : 'jquery-ui/button-tag-change.html',
-  JQUERY_UI_BUTTON_BUTTONSET : 'jquery-ui/button-buttonset.html',
+  JQUERY_UI_BUTTON_CONTROLGROUP : 'jquery-ui/button-controlgroup.html',
   BOOTSTRAP_BUTTONBASIC : 'bootstrap/button-basic.html',
   BOOTSTRAP_BUTTON_TAG_CHANGE : 'bootstrap/button-tag-change.html',
-  BOOTSTRAP_BUTTON_BUTTONSET : 'bootstrap/button-buttonset.html',
+  BOOTSTRAP_BUTTON_BUTTONGROUP : 'bootstrap/button-buttongroup.html',
 
   // 3.3. モーダルダイアログ
   JQUERY_UI_MODAL : 'jquery-ui/modal.html',
@@ -149,15 +150,15 @@ window.PATH = {
   MOMENT_CONVERT_DATE : 'moment/convert-date.html',
   MOMENT_CHECK_DATE : 'moment/check-date.html',
   MOMENT_CONVERT_TIME : 'moment/convert-time.html',
-  UNDERSCORE_STRING_CONVERT_NUMBER : 'underscore-string/convert-number.html',
-  UNDERSCORE_STRING_PADDING : 'underscore-string/padding.html',
-  UNDERSCORE_STRING_TRIMMING : 'underscore-string/trimming.html',
-  MOMENT_CONVERT_ZENKAKU_HANKAKU : 'moment/convert-zenkaku-hankaku.html',
-  MOMENT_CONVERT_ZENKAKU_HANKAKU_FOR_KATAKANA : 'moment/convert-zenkaku-hankaku-for-katakana.html',
+  JQUERY_CONVERT_NUMBER : 'jquery/convert-number.html',
+  LODASH_PADDING : 'lodash/padding.html',
+  LODASH_TRIMMING : 'lodash/trimming.html',
+  JQUERY_CONVERT_ZENKAKU_HANKAKU : 'jquery/convert-zenkaku-hankaku.html',
+  JQUERY_CONVERT_ZENKAKU_HANKAKU_FOR_KATAKANA : 'jquery/convert-zenkaku-hankaku-for-katakana.html',
 
   // 5.8. 入力値チェック
   VALIDATION : 'parsleyjs/validation.html',
-  VALIDATION_LOCALE : 'parsleyjs/validation-locale.html',
+  CUSTOM_VALIDATION : 'parsleyjs/custom-validation.html',
 
   // 6.1. Deferredによる非同期処理制御
   DEFERRED_PROMISE_ASYNC : 'jquery/deferred-promise-async.html',

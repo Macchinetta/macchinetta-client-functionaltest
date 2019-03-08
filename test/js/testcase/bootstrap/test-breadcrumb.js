@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -55,8 +56,8 @@
           var breadcrumbLiNo3 = testObj.doc.querySelector('.breadcrumb li:nth-child(3)');
           var breadcrumbLiNo3Top = breadcrumbLiNo3.getBoundingClientRect().top;
 
-          assert.equal(breadcrumbLiNo1Top, breadcrumbLiNo2Top, 'UICP0301 001');
-          assert.equal(breadcrumbLiNo1Top, breadcrumbLiNo3Top, 'UICP0301 001');
+          assert.equal(breadcrumbLiNo1Top, breadcrumbLiNo2Top, 'UICP0401 001');
+          assert.equal(breadcrumbLiNo1Top, breadcrumbLiNo3Top, 'UICP0401 001');
         },
         function () {
           done();

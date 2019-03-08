@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 // slider-change-fontsize.js
 
@@ -19,7 +20,7 @@ $(function () {
     range: 'min',
 
     // スライダーの最小値を設定
-    min: 8,
+    min: 10,
 
     // スライダーの最大値を設定
     max: 24,
@@ -28,13 +29,13 @@ $(function () {
     step: 2,
 
     // スライダーの初期値を設定
-    value: select[0].selectedIndex * 2 + 8,
+    value: select[0].selectedIndex * 2 + 10,
 
     // ハンドルを移動する度に発生するイベントに関数を設定
     slide: function (event, ui) {
 
       // ドロップダウンリストを選択
-      select[0].selectedIndex = (ui.value - 8) / 2;
+      select[0].selectedIndex = (ui.value - 10) / 2;
       changeFontSize(ui.value);
     },
 
@@ -52,6 +53,6 @@ $(function () {
 
   // ドロップダウンリストの値を変更した場合、スライダーの位置を変更する
   $('#font').on('change', function () {
-    slider.slider('value', this.selectedIndex * 2 + 8);
+    slider.slider('value', this.selectedIndex * 2 + 10);
   });
 });

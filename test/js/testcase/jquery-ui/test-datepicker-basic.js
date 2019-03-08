@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -52,7 +53,7 @@
             * 1)カレンダーの表示状態が'none'であること
             */
           var calenderViewStyle = testObj.win.getComputedStyle(calenderView).display;
-          assert.equal(calenderViewStyle, 'none', 'UICP0701 001');
+          assert.equal(calenderViewStyle, 'none', 'UICP1001 001');
         },
         function () {
 
@@ -66,7 +67,7 @@
             * 1)カレンダーの表示状態が'block'であること
             */
           var calenderViewStyle = testObj.win.getComputedStyle(calenderView).display;
-          assert.equal(calenderViewStyle, 'block', 'UICP0701 002');
+          assert.equal(calenderViewStyle, 'block', 'UICP1001 002');
         },
         function () {
 
@@ -86,7 +87,7 @@
           var month = ('00' + (today.getMonth() + 1)).slice(-2);
           var date = ('00' + today.getDate()).slice(-2);
           var todayStr = year + '/' + month + '/' + date;
-          assert.equal(textBoxValue, todayStr, 'UICP0701 003');
+          assert.equal(textBoxValue, todayStr, 'UICP1001 003');
         },
         function () {
           done();

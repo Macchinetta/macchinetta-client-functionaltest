@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -64,7 +65,7 @@
           assert.equal(topHeaderCell.getBoundingClientRect().top, topHeaderPosition, 'GRID0301 001');
 
           var position = table.scrollHeight - table.clientHeight;
-          assert.equal(table.scrollTop, position, 'GRID0301 001');
+          assert.equal(Math.round(table.scrollTop), position, 'GRID0301 001');
 
         },
         function () {

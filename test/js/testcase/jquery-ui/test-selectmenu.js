@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -40,22 +41,23 @@
 
     // ----------------------- テストケース -----------------------
     it('UICP0501 001 セレクトメニューが開くこと', function (done) {
+      this.timeout(0);
 
       // テスト実行
       m.executeSequentialWithDelay([
         function () {
 
           // 1.セレクトメニューをクリックする
-          var dropDwnList = testObj.doc.querySelector('#selectmenu-button > span.ui-icon.ui-icon-triangle-1-s');
-          dropDwnList.dispatchEvent(m.simulateEvent('click'));
+          var selectmenuIcon = testObj.doc.querySelector('#selectmenu-button > span.ui-icon.ui-icon-triangle-1-s');
+          selectmenuIcon.dispatchEvent(m.simulateEvent('click'));
         },
         function () {
 
           // ■確認項目1　: セレクトメニューが開くこと
           //1)assert.equal : selectmenuの表示が「block」になること
-          var dropdownmenu = testObj.doc.querySelector('body > div');
-          var dropdownmenuStyle = testObj.win.getComputedStyle(dropdownmenu).display;
-          assert.equal(dropdownmenuStyle, 'block', MSG_JQUERY_UI_SELECTMENU);
+          var selectmenuList = testObj.doc.querySelector('body > div');
+          var selectmenuListDisp = testObj.win.getComputedStyle(selectmenuList).display;
+          assert.equal(selectmenuListDisp, 'block', MSG_JQUERY_UI_SELECTMENU);
         },
         function () {
           done();
@@ -63,30 +65,29 @@
       ], 0);
     });
     it('UICP0501 002 セレクトメニューの切り替えができること', function (done) {
-      this.timeout(2500);
+      this.timeout(0);
 
       // テスト実行
       m.executeSequentialWithDelay([
         function () {
 
           // 1.セレクトメニューをクリックする
-          var dropDwnList = testObj.doc.querySelector('#selectmenu-button > span.ui-icon.ui-icon-triangle-1-s');
-          dropDwnList.dispatchEvent(m.simulateEvent('click'));
+          var selectmenuIcon = testObj.doc.querySelector('#selectmenu-button > span.ui-icon.ui-icon-triangle-1-s');
+          selectmenuIcon.dispatchEvent(m.simulateEvent('click'));
         },
         function () {
 
           // 2.セレクトメニューから「ユーザ情報編集」を選択する
-          var uiID2 = testObj.doc.querySelector('#ui-id-2');
-          var selectmenu2 = testObj.doc.querySelector('#selectmenu-button > span.ui-selectmenu-text');
-          uiID2.dispatchEvent(m.simulateEvent('click'));
-          selectmenu2.textContent = 'ユーザ情報編集';
+          var selectItemID2 = testObj.doc.querySelector('#ui-id-2');
+          selectItemID2.dispatchEvent(m.simulateEvent('mouseover'));
+          selectItemID2.dispatchEvent(m.simulateEvent('click'));
         },
         function () {
 
           // ■確認項目1　: セレクトメニューの選択状態が切り替わること
           //1)assert.equal : selectmenuの「ユーザ情報編集」が選択されていること
-          var dropdownmenu = testObj.doc.querySelectorAll('#selectmenu-button > span.ui-selectmenu-text');
-          assert.equal(dropdownmenu[0].textContent, 'ユーザ情報編集', MSG_JQUERY_UI_SELECTMENU);
+          var selectmenuTxt = testObj.doc.querySelector('#selectmenu-button > span.ui-selectmenu-text');
+          assert.equal(selectmenuTxt.textContent, 'ユーザ情報編集', MSG_JQUERY_UI_SELECTMENU);
         },
         function () {
           done();

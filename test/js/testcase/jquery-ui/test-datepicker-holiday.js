@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -66,16 +67,16 @@
           var calenderView0401ClassName = calenderView0401.className;
           var calenderView0401Title = calenderView0401.title;
 
-          expect(calenderView0401ClassName, 'UICP0702 001').to.contain('class-holiday');
-          expect(calenderView0401ClassName, 'UICP0702 001').to.contain('ui-datepicker-unselectable');
-          assert.equal(calenderView0401Title, '任意の休日', 'UICP0702 001');
+          expect(calenderView0401ClassName, 'UICP1002 001').to.contain('class-holiday');
+          expect(calenderView0401ClassName, 'UICP1002 001').to.contain('ui-datepicker-unselectable');
+          assert.equal(calenderView0401Title, '任意の休日', 'UICP1002 001');
 
           var calenderView0401Opacity = testObj.win.getComputedStyle(calenderView0401).opacity;
-          assert.equal(calenderView0401Opacity, '0.35', 'UICP0702 001');
+          assert.equal(calenderView0401Opacity, '0.35', 'UICP1002 001');
 
           var calenderView0401Span = testObj.doc.querySelector('#ui-datepicker-div td:nth-child(6) span');
           var calenderView0401BgColor = testObj.win.getComputedStyle(calenderView0401Span).backgroundColor;
-          assert.equal(calenderView0401BgColor, 'rgb(255, 192, 203)', 'UICP0702 001');
+          assert.equal(calenderView0401BgColor, 'rgb(255, 192, 203)', 'UICP1002 001');
         },
         function () {
 
@@ -90,7 +91,7 @@
             * 1)テキストボックスの値が'2016/04/02'のままであること
             */
           var textBoxValue = textBox.value;
-          assert.equal(textBoxValue, '2016/04/02', 'UICP0702 002');
+          assert.equal(textBoxValue, '2016/04/02', 'UICP1002 002');
         },
         function () {
           done();
@@ -126,15 +127,15 @@
           var calenderView0101ClassName = calenderView0101.className;
           var calenderView0101Title = calenderView0101.title;
 
-          expect(calenderView0101ClassName, 'UICP0703 001').to.contain('class-holiday');
-          expect(calenderView0101ClassName, 'UICP0703 001').to.not.contain('ui-datepicker-unselectable');
-          assert.equal(calenderView0101Title, '元日', 'UICP0703 001');
+          expect(calenderView0101ClassName, 'UICP1002 003').to.contain('class-holiday');
+          expect(calenderView0101ClassName, 'UICP1002 003').to.not.contain('ui-datepicker-unselectable');
+          assert.equal(calenderView0101Title, '元日', 'UICP1002 003');
 
           var calenderView0101Span = testObj.doc.querySelector('#ui-datepicker-div td:nth-child(6) a');
           var calenderView0101Opacity = testObj.win.getComputedStyle(calenderView0101Span).opacity;
-          assert.equal(calenderView0101Opacity, '1', 'UICP0703 001');
+          assert.equal(calenderView0101Opacity, '1', 'UICP1002 003');
           var calenderView0101BgColor = testObj.win.getComputedStyle(calenderView0101Span).backgroundColor;
-          assert.equal(calenderView0101BgColor, 'rgb(255, 192, 203)', 'UICP0703 001');
+          assert.equal(calenderView0101BgColor, 'rgb(255, 192, 203)', 'UICP1002 003');
 
         },
         function () {
@@ -150,7 +151,7 @@
             * 1)テキストボックスの値が'2016/01/01'であること
             */
           var textBoxValue = textBox.value;
-          assert.equal(textBoxValue, '2016/01/01', 'UICP0703 002');
+          assert.equal(textBoxValue, '2016/01/01', 'UICP1002 004');
         },
         function () {
           done();

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -62,10 +63,10 @@
             */
           var calenderView0111 = testObj.doc.querySelector('#ui-datepicker-div tr:nth-child(3) td:nth-child(2)');
           var calenderView0111ClassName = calenderView0111.className;
-          expect(calenderView0111ClassName, 'UICP0704 001').to.not.contain('ui-datepicker-unselectable');
+          expect(calenderView0111ClassName, 'UICP1005 001').to.not.contain('ui-datepicker-unselectable');
 
           var calenderView0111Opacity = testObj.win.getComputedStyle(calenderView0111).opacity;
-          assert.equal(calenderView0111Opacity, '1', 'UICP0704 001');
+          assert.equal(calenderView0111Opacity, '1', 'UICP1005 001');
         },
         function () {
 
@@ -80,7 +81,7 @@
             * 1)テキストボックスの値が'2016/01/11'であること
             */
           var textBoxValue = textBox.value;
-          assert.equal(textBoxValue, '2016/01/11', 'UICP0704 002');
+          assert.equal(textBoxValue, '2016/01/11', 'UICP1005 001');
         },
         function () {
           done();
@@ -113,11 +114,11 @@
           var calenderView0110 = testObj.doc.querySelector('#ui-datepicker-div tr:nth-child(3) td:nth-child(1)');
           var calenderView0110ClassName = calenderView0110.className;
 
-          expect(calenderView0110ClassName, 'UICP0705 001').to.contain('ui-datepicker-unselectable');
-          expect(calenderView0110ClassName, 'UICP0705 001').to.contain('ui-state-disabled');
+          expect(calenderView0110ClassName, 'UICP1005 002').to.contain('ui-datepicker-unselectable');
+          expect(calenderView0110ClassName, 'UICP1005 002').to.contain('ui-state-disabled');
 
           var calenderView0110Opacity = testObj.win.getComputedStyle(calenderView0110).opacity;
-          assert.equal(calenderView0110Opacity, '0.35', 'UICP0705 001');
+          assert.equal(calenderView0110Opacity, '0.35', 'UICP1005 002');
         },
         function () {
 
@@ -132,7 +133,7 @@
             * 1)テキストボックスの値が'2016/01/12'のままであること
             */
           var textBoxValue = textBox.value;
-          assert.equal(textBoxValue, '2016/01/12', 'UICP0705 002');
+          assert.equal(textBoxValue, '2016/01/12', 'UICP1005 002');
         },
         function () {
           done();

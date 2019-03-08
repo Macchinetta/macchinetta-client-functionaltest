@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -39,6 +40,14 @@
     });
 
     // ----------------------- テストケース -----------------------
+
+/**
+    * 本テストでは、アコーディオンのパネルが開いていることを確認するために、パネルの高さが正しいかどうかで判断している。
+    * ただし、パネルの高さはブラウザごとに異なっており、
+    * Edge、IE、Firefoxでは高さが85となるのに対し、Chromeでは高さが84となる。
+    * そのため、パネルの高さを測る際は、85を基準とし、+-1の範囲を許容するようにしている。
+    */
+
     it('UICP0602 001 全てのパネルが閉じていること', function (done) {
       this.timeout(0);
       var accordionBody = testObj.doc.querySelectorAll('#accordion > div');
@@ -74,7 +83,8 @@
 
           // ■確認項目1　: アコーディオン1のみパネルが開いていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
-          assert.equal(accordionBody[0].clientHeight, '93', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
+          //2)assert : パネルの高さが正しいか確認する。
+          assert(accordionBody[0].clientHeight >= 84 && accordionBody[0].clientHeight <= 86, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[1].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[2].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
         },
@@ -88,9 +98,8 @@
           // ■確認項目2　: アコーディオン2のみパネルが開いていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
           //2)assert : パネルの高さが正しいか確認する。
-          //           Chtome54でアコーディオン２のパネルの高さが92だったため、＋－1の範囲を許容するようにしている。
           assert.equal(accordionBody[0].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
-          assert(accordionBody[1].clientHeight >= 92 && accordionBody[1].clientHeight <= 94, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
+          assert(accordionBody[1].clientHeight >= 84 && accordionBody[1].clientHeight <= 86, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[2].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
         },
         function () {
@@ -102,9 +111,10 @@
 
           // ■確認項目3　: アコーディオン3のみパネルが開いていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
+          //2)assert : パネルの高さが正しいか確認する。
           assert.equal(accordionBody[0].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[1].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
-          assert.equal(accordionBody[2].clientHeight, '93', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
+          assert(accordionBody[2].clientHeight >= 84 && accordionBody[2].clientHeight <= 86, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
         },
 
         //アコーディオンは各処理の反映に時間がかかるため500msを指定
@@ -129,7 +139,8 @@
 
           // ■確認項目1　: アコーディオン1のみパネルが開いていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
-          assert.equal(accordionBody[0].clientHeight, '93', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
+          //2)assert : パネルの高さが正しいか確認する。
+          assert(accordionBody[0].clientHeight >= 84 && accordionBody[0].clientHeight <= 86, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[1].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[2].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
         },
@@ -156,9 +167,8 @@
           // ■確認項目3　: アコーディオン2のみパネルが開いていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
           //2)assert : パネルの高さが正しいか確認する。
-          //           Chtome54でアコーディオン２のパネルの高さが92だったため、＋－1の範囲を許容するようにしている。
           assert.equal(accordionBody[0].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
-          assert(accordionBody[1].clientHeight >= 92 && accordionBody[1].clientHeight <= 94, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
+          assert(accordionBody[1].clientHeight >= 84 && accordionBody[1].clientHeight <= 86, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[2].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
         },
         function () {
@@ -183,9 +193,10 @@
 
           // ■確認項目5　: アコーディオン3のみパネルが開いていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
+          //2)assert : パネルの高さが正しいか確認する。
           assert.equal(accordionBody[0].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[1].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
-          assert.equal(accordionBody[2].clientHeight, '93', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
+          assert(accordionBody[2].clientHeight >= 84 && accordionBody[2].clientHeight <= 86, MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
         },
         function () {
 
@@ -194,7 +205,7 @@
         },
         function () {
 
-          // ■確認項目4　: 全てのパネルが閉じていること
+          // ■確認項目6　: 全てのパネルが閉じていること
           //1)assert.equal : パネルの高さが期待値と等しいこと確認する。
           assert.equal(accordionBody[0].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);
           assert.equal(accordionBody[1].clientHeight, '0', MSG_JQUERY_UI_ACCORDION_COLLAPSIBLE);

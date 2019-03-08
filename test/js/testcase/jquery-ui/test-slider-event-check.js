@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -38,38 +39,42 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('UICP0805 001 スライダーのハンドルを一番右まで移動するとの状態確認', function (done) {
+    it('UICP0805 001 スライダーを一番右まで移動した際、設定したイベントが取得できること', function (done) {
       this.timeout(0);
-      var span = testObj.doc.querySelector('#slider-event > span');
+      var handle = testObj.doc.querySelector('#slider-event > span');
+      var textBox = testObj.doc.querySelector('#status');
 
       // ドラッグスタートとなる座標を取得
-      var startX = span.getBoundingClientRect().left;
+      var startX = handle.getBoundingClientRect().left;
+      var startY = handle.getBoundingClientRect().top;
 
       // ドロップ対象となる座標を取得
-      var endX = span.getBoundingClientRect().left + 780;
+      /**
+      * ハンドルを初期位置から一番右まで動かす場合の移動幅を400pxとする。
+      * これは、スライダー幅が400pxであり、ハンドルの初期位置が一番左にあるためである。
+      */
+      var endX = handle.getBoundingClientRect().left + 400;
+      var endY = handle.getBoundingClientRect().top;
 
       m.executeSequentialWithDelay([
 
-        // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-        function () {
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
         function () {
 
-          //1.ドラッグする要素spanをドラッグする
+          //1.スライダーのハンドルをドラッグする
           var downevent = m.simulateEvent('mousedown', {
-            clientX: startX,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientX: endX,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
         function () {
 
@@ -77,8 +82,7 @@
             * ■確認項目1:スライダーを一番右まで移動した際、設定したイベントが取得できることを確認する
             * 1)テキストボックスの値が、「create, start, slide, slide, stop, change」になっていること
             */
-          var fontValue = testObj.doc.querySelector('#status');
-          assert.equal(fontValue.value, 'create, start, slide, stop, change', MSG_JQUERY_UI_SLIDER_EVENT_CHECK);
+          assert.equal(textBox.value, 'create, start, slide, stop, change', MSG_JQUERY_UI_SLIDER_EVENT_CHECK);
         },
         function () {
           done();
@@ -87,9 +91,10 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('UICP0805 002 テキストボックスの値が、「create, change」になっていること', function (done) {
+    it('UICP0805 002 ボタンを押下した際、changeイベントが取得できること', function (done) {
       this.timeout(0);
       var button = testObj.doc.querySelector('#change_button');
+      var textBox = testObj.doc.querySelector('#status');
       m.executeSequentialWithDelay([
         function () {
           button.dispatchEvent(m.simulateEvent('click'));
@@ -100,8 +105,7 @@
             * ■確認項目1:ボタンを押下した際、changeイベントが取得できることを確認する
             * 1)テキストボックスの値が、「create, change」になっていること
             */
-          var fontValue = testObj.doc.querySelector('#status');
-          assert.equal(fontValue.value, 'create, change', MSG_JQUERY_UI_SLIDER_EVENT_CHECK);
+          assert.equal(textBox.value, 'create, change', MSG_JQUERY_UI_SLIDER_EVENT_CHECK);
         },
         function () {
           done();

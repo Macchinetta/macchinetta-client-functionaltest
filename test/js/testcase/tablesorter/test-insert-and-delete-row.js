@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -54,7 +55,7 @@
             * 1)最終行の姓セルの値が'姓'になっていること
             */
           var lastFamilyCell = testObj.doc.querySelector('tr:nth-child(11) td:first-child');
-          assert.equal(lastFamilyCell.textContent, '姓', 'GRID0105 001');
+          assert.equal(lastFamilyCell.textContent, '姓', 'GRID0102 001');
         },
         function () {
           done();
@@ -78,7 +79,7 @@
             * 1)先頭行の姓セルの値が'安田'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:first-child td:first-child');
-          assert.equal(firstFamilyCell.textContent, '安田', 'GRID0106 001');
+          assert.equal(firstFamilyCell.textContent, '安田', 'GRID0102 002');
         },
         function () {
           done();
@@ -98,7 +99,7 @@
             * 1)コンテンツの編集許可設定が'true'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:first-child td:first-child div');
-          assert.equal(firstFamilyCell.contentEditable, 'true', 'GRID0107 001');
+          assert.equal(firstFamilyCell.contentEditable, 'true', 'GRID0102 003');
         },
         function () {
           done();
