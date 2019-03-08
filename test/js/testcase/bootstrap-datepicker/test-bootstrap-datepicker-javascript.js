@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -50,7 +51,7 @@
             * ■確認項目1:カレンダーが初期表示されていないことを確認する
             * カレンダーの要素が存在していないこと
             */
-          assert.isNull(calenderView, 'APND0402 001');
+          assert.isNull(calenderView, 'UICP1008 001');
 
         },
         function () {
@@ -63,14 +64,14 @@
           /**
             * ■確認項目2:カレンダーが表示されること、カレンダー上段中央の年月日の形式が9月2014になっていることを確認する
             * 1)カレンダー要素の表示状態が'block'であること
-            * 2)カレンダーの年月表示が'9月 2014'であること
+            * 2)カレンダーの年月表示が'2014年09月'であること
             */
           var calenderDays = testObj.doc.querySelector('.datepicker-days');
-          var calenderDaysStyle = calenderDays.style.display;
-          assert.equal(calenderDaysStyle, 'block', 'APND0402 002');
+          var calenderDaysStyle = testObj.win.getComputedStyle(calenderDays).display;
+          assert.equal(calenderDaysStyle, 'block', 'UICP1008 002');
           var titleYearMonth = testObj.doc.querySelector('.datepicker-switch');
           var textYearMonth = titleYearMonth.textContent;
-          assert.equal(textYearMonth, '9月 2014', 'APND0402 002');
+          assert.equal(textYearMonth, '2014年09月', 'UICP1008 002');
         },
         function () {
 
@@ -85,7 +86,7 @@
             * 1)テキストボックスの値が'2014/09/10'であること
             */
           var dateValue = textBox.value;
-          assert.equal(dateValue, '2014/09/10', 'APND0402 003');
+          assert.equal(dateValue, '2014/09/10', 'UICP1008 003');
         },
         function () {
           done();

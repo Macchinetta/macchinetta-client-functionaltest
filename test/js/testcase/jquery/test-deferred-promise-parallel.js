@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -36,7 +37,7 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('ASNC0105 001 設定した順序で非同期処理が完了すること', function (done) {
+    it('ASNC0104 001 設定した順序で非同期処理が完了すること', function (done) {
       this.timeout(0);
 
       var startButton = testObj.doc.querySelector('#deferred-start');

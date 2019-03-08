@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -17,6 +18,9 @@
     win: null,
     doc: null
   };
+
+  // message用定数定義
+  var MSG_SORT_TS = 'sort-ts.';
 
   describe('GRID05 tablesorter形式のテーブルに対して、ソートが利用できる', function () {
 
@@ -45,6 +49,9 @@
 
           // ヘッダの姓をクリック（姓をキーとした昇順ソート）
           var familyHeader = testObj.doc.querySelector('th:first-child');
+          familyHeader.dispatchEvent(m.simulateEvent('mousedown', {
+            which: 1
+          }));
           familyHeader.dispatchEvent(m.simulateEvent('mouseup', {
             which: 1
           }));
@@ -58,14 +65,17 @@
             * 2)2行目の姓セルの値が'坂'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:first-child td:first-child');
-          assert.equal(firstFamilyCell.textContent, '中居', 'GRID0502 001');
+          assert.equal(firstFamilyCell.textContent, '中居', MSG_SORT_TS);
           var secondFamilyCell = testObj.doc.querySelector('tr:nth-child(2) td:first-child');
-          assert.equal(secondFamilyCell.textContent, '坂', 'GRID0502 001');
+          assert.equal(secondFamilyCell.textContent, '坂', MSG_SORT_TS);
         },
         function () {
 
           // ヘッダの姓をクリック（姓をキーとした降順ソート）
           var familyHeader = testObj.doc.querySelector('th:first-child');
+          familyHeader.dispatchEvent(m.simulateEvent('mousedown', {
+            which: 1
+          }));
           familyHeader.dispatchEvent(m.simulateEvent('mouseup', {
             which: 1
           }));
@@ -79,9 +89,9 @@
             * 2)2行目の姓セルの値が'小本'になっていること
             */
           var firstFamilyCell = testObj.doc.querySelector('tr:first-child td:first-child');
-          assert.equal(firstFamilyCell.textContent, '毛利', 'GRID0502 002');
+          assert.equal(firstFamilyCell.textContent, '毛利', MSG_SORT_TS);
           var secondFamilyCell = testObj.doc.querySelector('tr:nth-child(2) td:first-child');
-          assert.equal(secondFamilyCell.textContent, '小本', 'GRID0502 002');
+          assert.equal(secondFamilyCell.textContent, '小本', MSG_SORT_TS);
         },
         function () {
           done();

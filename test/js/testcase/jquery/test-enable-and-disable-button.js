@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -53,7 +54,7 @@
             * 1)送信ボタンのdisabled属性がtureであること
             */
           var buttonDisabled = submitButton.disabled;
-          assert.isTrue(buttonDisabled, 'CTRL0201 001');
+          assert.isTrue(buttonDisabled, 'CTRL0301 001');
         },
         function () {
 
@@ -67,7 +68,7 @@
             * 1)送信ボタンのdisabled属性がfalseであること
             */
           var buttonDisabled = submitButton.disabled;
-          assert.isFalse(buttonDisabled, 'CTRL0201 002');
+          assert.isFalse(buttonDisabled, 'CTRL0301 002');
         },
         function () {
           done();

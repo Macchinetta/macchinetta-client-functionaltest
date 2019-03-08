@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -62,14 +63,14 @@
 
           //1.ドラッグする要素Aをドラッグする
           var downevent = m.simulateEvent('mousedown', {
-            clientX: startX,
-            clientY: startY,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
           drag1El.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientX: endX,
-            clientY: endY,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
           drag1El.dispatchEvent(moveevent);
@@ -81,7 +82,7 @@
             * 1)マウスカーソルの形状が'move'であること
             */
           var bodyElStyle = bodyEl.style.cursor;
-          assert.equal(bodyElStyle, 'move', 'UICP1001 001');
+          assert.equal(bodyElStyle, 'move', 'UICP1301 001');
         },
         function () {
 
@@ -96,7 +97,7 @@
             * 1)テキストエリアの値に'ドラッグ先ドラッグする要素Aがカートに入れられました。'が含まれていること
             */
           var textContent = testObj.doc.querySelector('.ui-droppable').textContent;
-          expect(textContent, 'UICP1001 002').to.contain('ドラッグ先ドラッグする要素Aがカートに入れられました。');
+          expect(textContent, 'UICP1301 002').to.contain('ドラッグ先ドラッグする要素Aがカートに入れられました。');
         },
         function () {
           done();

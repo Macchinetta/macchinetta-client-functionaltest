@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -17,6 +18,9 @@
     win: null,
     doc: null
   };
+
+  // message用定数定義
+  var MSG_COL_NO_SORT = 'slickgrid-col-no-sort.';
 
   describe('GRID06 SlickGrid形式のテーブルに対して、指定のカラムの入れ替えを無効にできる', function () {
 
@@ -53,12 +57,6 @@
       m.executeSequentialWithDelay([
         function () {
 
-          // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
-        function () {
-
           // ヘッダのTitleセルをDurationセルの右横にドラッグ＆ドロップする
           titleHeader1.dispatchEvent(m.simulateEvent('mousedown', {
             clientX: titleHeader1Left,
@@ -66,7 +64,7 @@
             which: 1
           }));
           titleHeader1.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: titleHeader2Right - 1,
+            clientX: titleHeader2Right,
             clientY: titleHeader2Top,
             which: 1
           }));
@@ -80,10 +78,10 @@
             * 2)2行目のDuration列の値が'5 days'になっていること
             */
           var titleCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:first-child');
-          assert.equal(titleCell.textContent, 'タスク 0', 'GRID0602 001');
+          assert.equal(titleCell.textContent, 'タスク 0', MSG_COL_NO_SORT);
 
           var durationCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(2)');
-          assert.equal(durationCell.textContent, '5 days', 'GRID0602 001');
+          assert.equal(durationCell.textContent, '5 days', MSG_COL_NO_SORT);
         },
         function () {
           done();

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -17,7 +18,7 @@
     doc: null
   };
 
-  describe('ASNC01 jQuery形式でAjaxの再利用ができる', function () {
+  describe('ASNC01 非同期通信にDeferredを適用できる', function () {
 
     // 試験対象サンプルプログラム。
     var sampleFileName = PATH.DEFERRED_PROMISE_AJAX;
@@ -36,38 +37,37 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('ASNC0106 001 非同期通信のコールバック関数が呼び出し順で実行されること', function (done) {
+    it('ASNC0105 001 非同期通信の結果に応じてメッセージが表示されること', function (done) {
       this.timeout(0);
 
       var startButton = testObj.doc.querySelector('#deferred-start');
 
       // テスト実行
-      m.executeSequentialWithSpecificDelay([
-        {
-          fn: function () {
+      m.executeSequentialWithDelay([
+        function () {
 
-            // 1.「start」ボタンを押下する
-            startButton.dispatchEvent(m.simulateEvent('click'));
-          }
-
+          // 1.「start」ボタンを押下する
+          startButton.dispatchEvent(m.simulateEvent('click'));
         },
-        {
-          fn: function () {
+        function () {
 
-            /**
-              * ■確認項目1:「function A を実行します。」、「function B を実行します。」のメッセージが表示されることを確認する
-              * 1)'function A を実行します。'のメッセージが表示されていること
-              * 2)'function B を実行します。'のメッセージが表示されていること
-              */
-            var p1 = testObj.doc.querySelector('#deferred-area > p:nth-child(2)');
-            var p2 = testObj.doc.querySelector('#deferred-area > p:nth-child(3)');
-            assert.equal(p1.textContent, 'function A を実行します。', MSG_DEFERRED_PROMISE_AJAX);
-            assert.equal(p2.textContent, 'function B を実行します。', MSG_DEFERRED_PROMISE_AJAX);
-            done();
-          },
-          delay:500
+          /**
+            * ■確認項目1:非同期通信の結果に応じてメッセージが表示されることを確認する
+            */
+          var innerText = testObj.doc.querySelector('#deferred-area').innerText;
+          assert.include(innerText, 'data/dataA.jsonの取得に成功しました。', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'data/dataA.jsonの読み込みが成功しました。', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'list1 : リスト1', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'list2 : リスト2', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'list3 : リスト3', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'list4 : リスト4', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'data/dataB_dummy.jsonの取得に失敗しました。', MSG_DEFERRED_PROMISE_AJAX);
+          assert.include(innerText, 'data/dataB_dummy.jsonの読み込みに失敗しました。', MSG_DEFERRED_PROMISE_AJAX);
+        },
+        function () {
+          done();
         }
-      ], 0);
+      ], 500);
     });
 
     // ----------------------- テストケース -----------------------

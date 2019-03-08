@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -61,7 +62,7 @@
             */
           var calenderViewFirst = testObj.doc.querySelector('.ui-datepicker-calendar th:nth-child(1) span');
           var calenderViewFirstText = calenderViewFirst.textContent;
-          assert.equal(calenderViewFirstText, 'Mo', 'UICP0706 001');
+          assert.equal(calenderViewFirstText, 'Mo', 'UICP1006 001');
         },
         function () {
 
@@ -77,7 +78,7 @@
             */
           var textBoxValue = textBox.value;
           var todayStr = date + '/' + month + '/' + year;
-          assert.equal(textBoxValue, todayStr, 'UICP0706 002');
+          assert.equal(textBoxValue, todayStr, 'UICP1006 002');
         },
         function () {
           done();
@@ -110,7 +111,7 @@
             */
           var japaneseMonth = (today.getMonth() + 1) + '月';
           var monthTextContent = testObj.doc.querySelector('.ui-datepicker-month').textContent;
-          assert.equal(monthTextContent, japaneseMonth, 'UICP0707 001');
+          assert.equal(monthTextContent, japaneseMonth, 'UICP1006 003');
         },
         function () {
 
@@ -126,7 +127,7 @@
             */
           var textBoxValue = textBox.value;
           var todayStr = year + '/' + month + '/' + date;
-          assert.equal(textBoxValue, todayStr, 'UICP0707 002');
+          assert.equal(textBoxValue, todayStr, 'UICP1006 004');
         },
         function () {
           done();

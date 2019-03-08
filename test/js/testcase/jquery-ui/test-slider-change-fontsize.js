@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -38,11 +39,11 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('UICP0803 001 初期状態を確認すること', function (done) {
+    it('UICP0803 001 初期表示の際、ドロップダウンリスト・スライダー・フォントサイズがそれぞれ定義した値になっていること', function (done) {
       this.timeout(0);
-      var font = testObj.doc.querySelector('#font');
-      var fontSpan = testObj.doc.querySelector(' #slider-change-fontsize > span');
-      var fontSizeDiv = testObj.doc.querySelector('#font-size-div');
+      var dropdown = testObj.doc.querySelector('#font');
+      var handle = testObj.doc.querySelector(' #slider-change-fontsize > span');
+      var fontSizeExample = testObj.doc.querySelector('#font-size-div');
 
       // テスト実行
       m.executeSequentialWithDelay([
@@ -51,15 +52,15 @@
 
           /**
             * ■確認項目1:初期表示の際、ドロップダウンリスト・スライダー・フォントサイズがそれぞれ定義した値になっていることを確認する
-            * 1)ドロップダウンリストの値が'8'であること
+            * 1)ドロップダウンリストの値が'10'であること
             * 2)ハンドルの位置が'0%'であること
-            * 3)テキストのフォントサイズが'8px'であること
+            * 3)テキストのフォントサイズが'10px'であること
             */
-          var fontSpanLeft = fontSpan.style.left;
-          var fontSizeDivFont = fontSizeDiv.style.fontSize;
-          assert.equal(font.value, '8');
-          assert.equal(fontSpanLeft, '0%', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
-          assert.equal(fontSizeDivFont, '8px', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          var handleLeft = handle.style.left;
+          var fontSize = fontSizeExample.style.fontSize;
+          assert.equal(dropdown.value, '10', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          assert.equal(handleLeft, '0%', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          assert.equal(fontSize, '10px', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
         },
         function () {
           done();
@@ -68,51 +69,57 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('UICP0803 002 スライダーのハンドルを一番右まで移動するとの状態確認', function (done) {
+    it('UICP0803 002 スライダーを一番右まで移動した際、ドロップダウンリスト・フォントサイズも連動して値が変わること', function (done) {
       this.timeout(0);
-      var span = testObj.doc.querySelector('#slider-change-fontsize > span');
-      var fontSizeDiv = testObj.doc.querySelector('#font-size-div');
+      var dropdown = testObj.doc.querySelector('#font');
+      var handle = testObj.doc.querySelector('#slider-change-fontsize > span');
+      var fontSizeExample = testObj.doc.querySelector('#font-size-div');
 
       // ドラッグスタートとなる座標を取得
-      var startX = span.getBoundingClientRect().left;
+      var startX = handle.getBoundingClientRect().left;
+      var startY = handle.getBoundingClientRect().top;
 
       // ドロップ対象となる座標を取得
-      var endX = span.getBoundingClientRect().left + 380;
+      /**
+      * ハンドルを初期位置から一番右まで動かす場合の移動幅を400pxとする。
+      * これは、スライダー幅が400pxであり、ハンドルの初期位置が一番左にあるためである。
+      */
+      var endX = handle.getBoundingClientRect().left + 400;
+      var endY = handle.getBoundingClientRect().top;
 
       m.executeSequentialWithDelay([
 
-        // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-        function () {
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
         function () {
 
           //1.スライダーをドラッグする
           var downevent = m.simulateEvent('mousedown', {
-            clientX: startX,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientX: endX,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
         function () {
 
           /**
             * ■確認項目1:スライダーを一番右まで移動した際、ドロップダウンリスト・フォントサイズも連動して値が変わることを確認する
             * 1)ドロップダウンリストの値が'24'であること
-            * 2)テキストのフォントサイズが'24px'であること
+            * 2)ハンドルの位置が'100%'であること
+            * 3)テキストのフォントサイズが'24px'であること
             */
-          var fontValue = testObj.doc.querySelector('#font');
-          var fontSizeDivFont = fontSizeDiv.style.fontSize;
-          assert.equal(fontValue.value, '24');
-          assert.equal(fontSizeDivFont, '24px', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          var handleLeft = handle.style.left;
+          var fontSize = fontSizeExample.style.fontSize;
+          assert.equal(dropdown.value, '24', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          assert.equal(handleLeft, '100%', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          assert.equal(fontSize, '24px', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
         },
         function () {
           done();
@@ -121,29 +128,32 @@
     });
 
     // ----------------------- テストケース -----------------------
-    it('UICP0803 003 ドロップダウンリストのフォントサイズを24ｐxに設定するとの状態確認', function (done) {
+    it('UICP0803 003 ドロップダウンリストを変更した際、スライダー・フォントサイズも連動して値が変わること', function (done) {
       this.timeout(0);
-      var font = testObj.doc.querySelector('#font');
-      var fontSizeDiv = testObj.doc.querySelector('#font-size-div');
-      var fontSpan = testObj.doc.querySelector('#slider-change-fontsize > span');
+      var dropdown = testObj.doc.querySelector('#font');
+      var handle = testObj.doc.querySelector('#slider-change-fontsize > span');
+      var fontSizeExample = testObj.doc.querySelector('#font-size-div');
+
       m.executeSequentialWithDelay([
 
         // ドロップダウンリストのフォントサイズを24ｐxに設定する。
         function () {
-          font.selectedIndex = 8;
-          font.dispatchEvent(m.simulateEvent('change'));
+          dropdown.selectedIndex = 7;
+          dropdown.dispatchEvent(m.simulateEvent('change'));
         },
         function () {
 
           /**
             * ■確認項目1:ドロップダウンリストをっ変更した際、スライダー・フォントサイズも連動して値が変わることを確認する
-            * 1)ハンドルの位置が'100%'であること
-            * 2)テキストのフォントサイズが'24px'であること
+            * 1)ドロップダウンリストの値が'24'であること
+            * 2)ハンドルの位置が'100%'であること
+            * 3)テキストのフォントサイズが'24px'であること
             */
-          var fontSizeDivFont = fontSizeDiv.style.fontSize;
-          var fontSpanLeft = fontSpan.style.left;
-          assert.equal(fontSpanLeft, '100%', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
-          assert.equal(fontSizeDivFont, '24px', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          var handleLeft = handle.style.left;
+          var fontSize = fontSizeExample.style.fontSize;
+          assert.equal(dropdown.value, '24', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          assert.equal(handleLeft, '100%', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
+          assert.equal(fontSize, '24px', MSG_JQUERY_UI_SLIDER_CHANGE_FONTSIZE);
         },
         function () {
           done();

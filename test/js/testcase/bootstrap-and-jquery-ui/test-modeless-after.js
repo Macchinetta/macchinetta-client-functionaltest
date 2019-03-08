@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -57,7 +58,7 @@
           var uiDialogTitlebarClose = testObj.doc.querySelector('.ui-dialog-titlebar-close');
 
           // モードレスダイアログ-クローズボタンのエレメントに 'span' が含まれていること。
-          assert.match(uiDialogTitlebarClose.innerHTML, /span/i, 'APND0202 001');
+          assert.match(uiDialogTitlebarClose.innerHTML, /span/i, 'APND0106 001');
         },
         function () {
           done();

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -17,6 +18,9 @@
     win: null,
     doc: null
   };
+
+  // message用定数定義
+  var MSG_COPY_AND_PASTE = 'slickgrid-copy-and-paste.';
 
   describe('GRID07 SlickGrid形式のテーブルに対して、コピーアンドペースト編集ができる', function () {
 
@@ -42,9 +46,10 @@
       // テスト実行
       m.executeSequentialWithDelay([
         function () {
+          var firstTitleCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(2)');
+          var thirdTitleCell = testObj.doc.querySelector('.ui-widget-content:nth-child(3) .slick-cell:nth-child(2)');
 
           // 先頭行のTitleセルをクリックする
-          var firstTitleCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(2)');
           firstTitleCell.dispatchEvent(m.simulateEvent('click'));
 
           // ctrl + cキーを押下
@@ -54,7 +59,6 @@
           }));
 
           // 3行目のTitleセルをクリックする
-          var thirdTitleCell = testObj.doc.querySelector('.ui-widget-content:nth-child(3) .slick-cell:nth-child(2)');
           thirdTitleCell.dispatchEvent(m.simulateEvent('click'));
 
           // ctrl + vキーを押下
@@ -70,7 +74,7 @@
             * 1)3行目のTitleセルの値がが'タスク 0'になっていること
             */
           var thirdTitleCell = testObj.doc.querySelector('.active .slick-cell:nth-child(2)');
-          assert.equal(thirdTitleCell.textContent, 'タスク 0', 'GRID0701 001');
+          assert.equal(thirdTitleCell.textContent, 'タスク 0', MSG_COPY_AND_PASTE);
         },
         function () {
           done();
@@ -82,35 +86,30 @@
       this.timeout(0);
       var firstTitleCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(2)');
       var firstCompleteCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(4)');
+      var firstTitleCellRight = firstTitleCell.getBoundingClientRect().right;
+      var firstTitleCellTop = firstTitleCell.getBoundingClientRect().top;
+      var firstCompleteCellRight = firstCompleteCell.getBoundingClientRect().right;
+      var firstCompleteCellTop = firstCompleteCell.getBoundingClientRect().top;
 
       // テスト実行
       m.executeSequentialWithDelay([
         function () {
 
-          // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
-        function () {
-
-          // 1.1行目とTitleセルから% Completeセルまで3つの値をドラッグする
+          /**
+            * 1.1行目とTitleセルから% Completeセルまで3つの値をドラッグする
+            * SlickGridテーブルのドラッグではmousemoveのイベントを2度発火する必要がある
+            */
           firstTitleCell.dispatchEvent(m.simulateEvent('mousedown', {
-            clientX: firstTitleCell.getBoundingClientRect().right,
-            clientY: firstTitleCell.getBoundingClientRect().top,
+            pageX: firstTitleCellRight,
+            pageY: firstTitleCellTop,
             which: 1
           }));
-
+          firstTitleCell.dispatchEvent(m.simulateEvent('mousemove', {}));
           firstTitleCell.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: firstCompleteCell.getBoundingClientRect().right,
-            clientY: firstCompleteCell.getBoundingClientRect().top,
+            pageX: firstCompleteCellRight,
+            pageY: firstCompleteCellTop,
             which: 1
           }));
-          firstTitleCell.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: firstCompleteCell.getBoundingClientRect().right,
-            clientY: firstCompleteCell.getBoundingClientRect().top,
-            which: 1
-          }));
-
           firstTitleCell.dispatchEvent(m.simulateEvent('mouseup'));
 
           // 2.Ctrl＋cキーを押下する
@@ -120,9 +119,9 @@
           }));
         },
         function () {
+          var thirdTitleCell = testObj.doc.querySelector('.ui-widget-content:nth-child(3) .slick-cell:nth-child(3)');
 
           // 3.3行目のDurationセルをクリックする
-          var thirdTitleCell = testObj.doc.querySelector('.ui-widget-content:nth-child(3) .slick-cell:nth-child(3)');
           thirdTitleCell.dispatchEvent(m.simulateEvent('click'));
 
           // 4.Ctrl＋vキーを押下する
@@ -130,22 +129,21 @@
             keyCode: 86,
             ctrlKey: true
           }));
-
         },
         function () {
 
           /**
             * 確認項目1-1:3行目のDurationセルの値が1行目のTitleセルの値になっていることを確認する
             * 1)3行目のDurationセルの値が'タスク 0'になっていること
-            * 確認項目1-2:4行目のStartセルの値が1行目の% Completeセルの値になっていることを確認する
+            * 確認項目1-2:3行目のStartセルの値が1行目の% Completeセルの値になっていることを確認する
             * 2)4行目のStartセルの値が1行目の% Completeセルの値と等しいこと
             */
           var thirdDurationCell = testObj.doc.querySelector('.active .slick-cell:nth-child(3)');
-          assert.equal(thirdDurationCell.textContent, 'タスク 0', 'GRID0702 001');
+          assert.equal(thirdDurationCell.textContent, 'タスク 0', MSG_COPY_AND_PASTE);
 
           var thirdStartCell = testObj.doc.querySelector('.active .slick-cell:nth-child(5)');
           var firstCompleteCellTxt = firstCompleteCell.textContent;
-          assert.equal(thirdStartCell.textContent, firstCompleteCellTxt, 'GRID0702 001');
+          assert.equal(thirdStartCell.textContent, firstCompleteCellTxt, MSG_COPY_AND_PASTE);
         },
         function () {
           done();

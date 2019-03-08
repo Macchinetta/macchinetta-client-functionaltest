@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -68,7 +69,7 @@
             assert.isNull(p3, MSG_DEFERRED_PROMISE_ASYNC);
             assert.equal(p1.textContent, '1', MSG_DEFERRED_PROMISE_ASYNC);
           },
-          delay:1000
+          delay:1100
         },
         {
           fn: function () {

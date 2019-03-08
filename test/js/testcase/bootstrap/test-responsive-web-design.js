@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -59,7 +60,7 @@
             */
           var sideContentsTop = sideContents.getBoundingClientRect().top;
           var mainContentsTop = mainContents.getBoundingClientRect().top;
-          assert.equal(sideContentsTop, mainContentsTop, 'UICP1101 001');
+          assert.equal(sideContentsTop, mainContentsTop, 'UICP1401 001');
         },
         function () {
 
@@ -75,7 +76,7 @@
             */
           var sideContentsLeft = sideContents.getBoundingClientRect().left;
           var mainContentsLeft = mainContents.getBoundingClientRect().left;
-          assert.equal(sideContentsLeft, mainContentsLeft, 'UICP1101 002');
+          assert.equal(sideContentsLeft, mainContentsLeft, 'UICP1401 002');
         },
         function () {
           done();

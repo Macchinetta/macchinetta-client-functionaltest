@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 // demonstrate-through-asynchronous-communication.js
 
@@ -22,8 +23,17 @@ $(function() {
       'type' : 'GET',
       'url' : 'data/dummy-data.json',
       'dataType' : 'json'
-      }).always(function() {
+      })
       
+      .then(function () {
+        console.log("成功")
+      })
+
+      .catch(function() {
+        console.log("失敗")
+      })
+
+      .then(function() {
         // 処理完了後にボタンを再度活性化
         $('#executeService').prop('disabled', false);
         

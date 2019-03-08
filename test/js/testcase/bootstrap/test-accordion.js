@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -55,9 +56,9 @@
             * 2)パネルの高さが'0'であること
             */
           var accordionBodyClassName = accordionBody.className;
-          assert.equal(accordionBodyClassName, 'collapse', 'UICP0501 001');
+          assert.equal(accordionBodyClassName, 'collapse', 'UICP0604 001');
           var accordionBodyClientHeight = accordionBody.clientHeight;
-          assert.equal(accordionBodyClientHeight, '0', 'UICP0501 001');
+          assert.equal(accordionBodyClientHeight, '0', 'UICP0604 001');
         },
         function () {
 
@@ -73,9 +74,9 @@
             * 2)パネルの高さが'50'であること
             */
           var accordionBodyClassName = accordionBody.className;
-          assert.equal(accordionBodyClassName, 'collapse in', 'UICP0501 002');
+          assert.equal(accordionBodyClassName, 'collapse in', 'UICP0604 002');
           var accordionBodyClientHeight = accordionBody.clientHeight;
-          assert.equal(accordionBodyClientHeight, '50', 'UICP0501 002');
+          assert.equal(accordionBodyClientHeight, '50', 'UICP0604 002');
         },
         function () {
 
@@ -91,9 +92,9 @@
             * 2)パネルの高さが'0'であること
             */
           var accordionBodyClassName = accordionBody.className;
-          assert.equal(accordionBodyClassName, 'collapse', 'UICP0501 003');
+          assert.equal(accordionBodyClassName, 'collapse', 'UICP0604 003');
           var accordionBodyClientHeight = accordionBody.clientHeight;
-          assert.equal(accordionBodyClientHeight, '0', 'UICP0501 003');
+          assert.equal(accordionBodyClientHeight, '0', 'UICP0604 003');
         },
         function () {
           done();

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -55,9 +56,9 @@
             * 2)モーダルダイアログの表示状態が'block'であること
             */
           var myModalClassName = testObj.doc.querySelector('#myModal').className;
-          assert.equal(myModalClassName, 'modal in', 'UICP0101 001');
+          assert.equal(myModalClassName, 'modal in', 'UICP0202 001');
           var myModalStyleDdisplay = testObj.doc.querySelector('#myModal').style.display;
-          assert.equal(myModalStyleDdisplay, 'block', 'UICP0101 001');
+          assert.equal(myModalStyleDdisplay, 'block', 'UICP0202 001');
         },
         function () {
 
@@ -73,9 +74,9 @@
             * 2)モーダルダイアログの表示状態が'none'であること
             */
           var myModalClassName = testObj.doc.querySelector('#myModal').className;
-          assert.equal(myModalClassName, 'modal', 'UICP0101 002');
+          assert.equal(myModalClassName, 'modal', 'UICP0202 002');
           var myModalStyleDdisplay = testObj.doc.querySelector('#myModal').style.display;
-          assert.equal(myModalStyleDdisplay, 'none', 'UICP0101 002');
+          assert.equal(myModalStyleDdisplay, 'none', 'UICP0202 002');
         },
         function () {
           done();

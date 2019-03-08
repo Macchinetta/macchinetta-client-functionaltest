@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -57,19 +58,17 @@
             * オートコンプリートの表示状態が'block'であること
             */
           var autoCompView = testObj.doc.querySelector('#ui-id-1');
-          var autoCompViewStyle = autoCompView.style.display;
-          assert.equal(autoCompViewStyle, 'block', 'UICP0801 001');
+          var autoCompViewStyle = testObj.win.getComputedStyle(autoCompView).display;
+          assert.equal(autoCompViewStyle, 'block', 'UICP1101 001');
         },
         function () {
 
           // 2.オートコンプリートのlatexをクリックする(↓キーとEnterキーで実現)
           textBox.dispatchEvent(m.simulateEvent('keydown', {
-            keyCode: KEY.DOWN,
-            shiftKey: false
+            keyCode: KEY.DOWN
           }));
           textBox.dispatchEvent(m.simulateEvent('keydown', {
-            keyCode: KEY.ENTER,
-            shiftKey: false
+            keyCode: KEY.ENTER
           }));
         },
         function () {

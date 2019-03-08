@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -13,12 +14,15 @@
   // テスト用オブジェクト
   var assert = chai.assert;
   var testObj = {
-    sandboxEl : null,
-    win : null,
-    doc : null
+    sandboxEl: null,
+    win: null,
+    doc: null
   };
 
-  describe('APND02 Lo-Dashによるコーディング支援', function () {
+  // message用定数定義
+  var MSG_LODASH = 'lodash.';
+
+  describe('APND02 Lodashによるコーディング支援', function () {
 
     // 試験対象サンプルプログラム。
     var sampleFileName = PATH.LODASH;
@@ -38,17 +42,11 @@
     // ----------------------- テストケース -----------------------
     it('APND0201 001 リストの全ての要素に対して繰り返し処理ができ、テンプレートエンジンが使用できる', function (done) {
       this.timeout(0);
-      var textBoxCase1 = testObj.doc.querySelector('#case1');
-      var textBoxCase2 = testObj.doc.querySelector('#case2');
-      var textBoxCase3 = testObj.doc.querySelector('#case3');
-      var textBoxCase4 = testObj.doc.querySelector('#case4');
-      var textBoxCase5 = testObj.doc.querySelector('#case5');
-      var textBoxCase6 = testObj.doc.querySelector('#case6');
-      var textBoxCase7 = testObj.doc.querySelector('#case7');
 
       // テスト実行
       m.executeSequentialWithDelay([
         function () {
+          var txtBoxes = testObj.doc.querySelectorAll('div > input');
 
           // 1.初期表示
           /**
@@ -67,20 +65,13 @@
             * ■確認項目1-7:テンプレート内でJavaScriptコードを実行できること
             * 7)テキストボックスの値が'<li>fred</li><li>barney</li>'であること
             */
-          var case1List = textBoxCase1.value;
-          assert.equal(case1List, '1,2,3', 'APND0501 001');
-          var case2List = textBoxCase2.value;
-          assert.equal(case2List, '2,4,6', 'APND0501 001');
-          var case3List = textBoxCase3.value;
-          assert.equal(case3List, '3,6,9', 'APND0501 001');
-          var case4List = textBoxCase4.value;
-          assert.equal(case4List, '[{"name":"barney","age":36,"pets":["hoppy"]}]', 'APND0501 001');
-          var case5List = textBoxCase5.value;
-          assert.equal(case5List, 'hello fred', 'APND0501 001');
-          var case6List = textBoxCase6.value;
-          assert.equal(case6List, '<b>&lt;script&gt;</b>', 'APND0501 001');
-          var case7List = textBoxCase7.value;
-          assert.equal(case7List, '<li>fred</li><li>barney</li>', 'APND0501 001');
+          assert.equal(txtBoxes[0].value, '1,2,3', MSG_LODASH);
+          assert.equal(txtBoxes[1].value, '2,4,6', MSG_LODASH);
+          assert.equal(txtBoxes[2].value, '3,6,9', MSG_LODASH);
+          assert.equal(txtBoxes[3].value, '[{"name":"barney","age":36,"pets":["hoppy"]}]', MSG_LODASH);
+          assert.equal(txtBoxes[4].value, 'hello fred', MSG_LODASH);
+          assert.equal(txtBoxes[5].value, '<b>&lt;script&gt;</b>', MSG_LODASH);
+          assert.equal(txtBoxes[6].value, '<li>fred</li><li>barney</li>', MSG_LODASH);
         },
         function () {
           done();

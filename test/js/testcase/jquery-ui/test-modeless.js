@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -51,8 +52,8 @@
             * ■確認項目1:モードレスダイアログが開いていないことを確認する
             * 1)ダイアログの表示状態が'none'であること
             */
-          var uiDialogStyleDdisplay = uiDialog.style.display;
-          assert.equal(uiDialogStyleDdisplay, 'none', 'UICP0201 001');
+          var uiDialogStyleDdisplay = testObj.win.getComputedStyle(uiDialog).display;
+          assert.equal(uiDialogStyleDdisplay, 'none', 'UICP0301 001');
         },
         function () {
           var launchBtn = testObj.doc.querySelector('#modeless-launch');
@@ -67,13 +68,13 @@
             * 1)ダイアログの表示状態が'block'であること
             * 2)ダイアログのタイトルが'タイトル'であること
             */
-          var uiDialogStyleDdisplay = uiDialog.style.display;
-          assert.equal(uiDialogStyleDdisplay, 'block', 'UICP0201 002');
+          var uiDialogStyleDdisplay = testObj.win.getComputedStyle(uiDialog).display;
+          assert.equal(uiDialogStyleDdisplay, 'block', 'UICP0301 002');
           var uiDialogTitleTextContent = testObj.doc.querySelector('#ui-id-1').textContent;
-          assert.equal(uiDialogTitleTextContent, 'タイトル', 'UICP0201 002');
+          assert.equal(uiDialogTitleTextContent, 'タイトル', 'UICP0301 002');
         },
         function () {
-          var closeBtn = testObj.doc.querySelector('.ui-button-icon-primary');
+          var closeBtn = testObj.doc.querySelector('.ui-button-icon');
 
           // 2.モードレスダイアログの×ボタンを押下する
           closeBtn.dispatchEvent(m.simulateEvent('click'));
@@ -84,8 +85,8 @@
             * ■確認項目3:モードレスダイアログが開いていないことを確認する
             * 1)ダイアログの表示状態が'none'であること
             */
-          var uiDialogStyleDdisplay = uiDialog.style.display;
-          assert.equal(uiDialogStyleDdisplay, 'none', 'UICP0201 003');
+          var uiDialogStyleDdisplay = testObj.win.getComputedStyle(uiDialog).display;
+          assert.equal(uiDialogStyleDdisplay, 'none', 'UICP0301 003');
         },
         function () {
           done();

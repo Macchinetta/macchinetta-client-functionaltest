@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -50,11 +51,7 @@
 
         function () {
 
-          /**
-            * スライダーが表示されることを確認する。
-            *
-            */
-          assert.isNotNull(slider, MSG_JQUERY_UI_SLIDER);
+          // ■確認項目1 : スライダーが表示されることを確認する。
           assert.equal(sliderStyle, 'block', MSG_JQUERY_UI_SLIDER);
         },
         function () {
@@ -66,44 +63,45 @@
     // ----------------------- テストケース -----------------------
     it('UICP0801 001-02 ハンドルがマウスで操作できること', function (done) {
       this.timeout(0);
-      var span = testObj.doc.querySelector('#slider > span');
+      var handle = testObj.doc.querySelector('#slider > span');
 
       // ドラッグスタートとなる座標を取得
-      var startX = span.getBoundingClientRect().left;
+      var startX = handle.getBoundingClientRect().left;
+      var startY = handle.getBoundingClientRect().top;
 
       // ドロップ対象となる座標を取得
-      var endX = span.getBoundingClientRect().left + 20;
+      /**
+      * ハンドルを初期位置から5%の位置まで動かす場合の移動幅を20pxとする。
+      * これは、スライダー幅が400pxであり、ハンドルを5%分移動させるためである。
+      */
+      var endX = handle.getBoundingClientRect().left + 20;
+      var endY = handle.getBoundingClientRect().top;
 
       m.executeSequentialWithDelay([
 
-        // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-        function () {
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
         function () {
 
-          //1.ドラッグする要素spanをドラッグする
+          //1.スライダーのハンドルをドラッグする
           var downevent = m.simulateEvent('mousedown', {
-            clientX: startX,
+            pageX: startX,
+            pageY: startY,
             which: 1
           });
-          span.dispatchEvent(downevent);
+          handle.dispatchEvent(downevent);
           var moveevent = m.simulateEvent('mousemove', {
-            clientX: endX,
+            pageX: endX,
+            pageY: endY,
             which: 1
           });
-          span.dispatchEvent(moveevent);
+          handle.dispatchEvent(moveevent);
           var mouseup = m.simulateEvent('mouseup');
-          span.dispatchEvent(mouseup);
+          handle.dispatchEvent(mouseup);
         },
         function () {
 
-          // ■確認項目2 : ハンドルがマウスで操作できること
-          //1)assert.isTrue : ハンドルの位置が6%(5%)の位置にあることを確認する。
-          //　　　　　　　　　 IE,FFは'5%'、CHは'6%'の位置に動くため、いずれかを許容している。
-          var spanLeft = span.style.left == '6%' ? true : span.style.left == '5%' ? true : false;
-          assert.isTrue(spanLeft, MSG_JQUERY_UI_SLIDER);
+          // ■確認項目1 : ハンドルがマウスで操作できること
+          //1)assert.equal : ハンドルの位置が5%の位置にあることを確認する。
+          assert.equal(handle.style.left, '5%', MSG_JQUERY_UI_SLIDER);
         },
         function () {
           done();

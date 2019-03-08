@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /*
  * 自動試験単実行用のjs。
@@ -86,25 +87,21 @@
     'CTRL0701': 'CTRL07 moment形式で日付フォーマット変換が利用できること',
     'CTRL0702': 'CTRL07 moment形式で日付妥当性チェックが利用できること',
     'CTRL0703': 'CTRL07 moment形式で時刻フォーマット変換が利用できること',
-    'CTRL0704': 'CTRL07 特定文字の全角半角変換(英数字＋記号)ができること',
-    'CTRL0705': 'CTRL07 特定文字の全角半角変換(カタカナ)ができること',
+    'CTRL0707': 'CTRL07 特定文字の全角半角変換(英数字＋記号)ができること',
+    'CTRL0708': 'CTRL07 特定文字の全角半角変換(カタカナ)ができること',
     'CTRL0801': 'CTRL08 Parsleyを用いた入力値チェックができる',
-    'CTRL0802': 'CTRL08 Parsleyを用いたエラーメッセージのロケール設定、および、独自の入力値チェックができる',
+    'CTRL0802': 'CTRL08 Parsleyを用いて独自の入力チェックが利用できる',
     'ASNC0101': 'ASNC01 jQuery形式で1秒毎にメッセージを出力できる',
     'ASNC0102': 'ASNC01 jQuery形式で1秒毎にメッセージを出力（Deferred化）できる',
-    'ASNC0103': 'ASNC01 jQuery形式でコールバックの切り替え（then）が利用できる',
-    'ASNC0104': 'ASNC01 jQuery形式でコールバックの切り替え（done・fail）が利用できる',
-    'ASNC0105': 'ASNC01 jQuery形式で非同期処理の待ち合わせが利用できる',
-    'ASNC0106': 'ASNC01 jQuery形式でAjaxの再利用ができる',
+    'ASNC0103': 'ASNC01 非同期処理のエラーハンドリングが利用できる',
+    'ASNC0104': 'ASNC01 jQuery形式で非同期処理の待ち合わせが利用できる',
+    'ASNC0105': 'ASNC01 非同期通信にDeferredを適用できる',
     'APND0101': 'APND01 BootstrapとSlickGridを同時に使用する際テーブルの表示が崩れる',
     'APND0102': 'APND01 BootstrapとSlickGridを同時使用時にテーブルを正しく表示する',
     'APND0103': 'APND01 SlickGridのテーブルをタブ内に表示する際テーブルの表示が崩れる',
     'APND0104': 'APND01 SlickGridのテーブルをタブ内に正しく表示できる',
     'APND0105': 'APND01 BootstrapとjQuery UIを同時に使用する際モーダレスダイアログの×ボタンが表示されない',
     'APND0106': 'APND01 BootstrapとjQuery UIを同時に使用する際の名前空間の競合を回避できる',
-    'APND0201': 'APND02 Lo-Dashによるコーディング支援',
-    'APND0202': 'APND02 underscore形式で数値フォーマット変換が利用できること',
-    'APND0203': 'APND02 underscore形式でパディングが利用できること',
-    'APND0204': 'APND02 underscore形式でトリミングが利用できること'
+    'APND0201': 'APND02 Lodashによるコーディング支援'
   };
 }());

@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /*
  * sample表示用のjs。
@@ -26,7 +27,7 @@
     };
     document.getElementById('UICP0102').onclick = function (e) {
       e.preventDefault();
-      handlers.openSampleHtml(PATH.JQUERY_UI_BUTTON_BUTTONSET);
+      handlers.openSampleHtml(PATH.JQUERY_UI_BUTTON_CONTROLGROUP);
     };
     document.getElementById('UICP0103').onclick = function (e) {
       e.preventDefault();
@@ -38,7 +39,7 @@
     };
     document.getElementById('UICP0105').onclick = function (e) {
       e.preventDefault();
-      handlers.openSampleHtml(PATH.BOOTSTRAP_BUTTON_BUTTONSET);
+      handlers.openSampleHtml(PATH.BOOTSTRAP_BUTTON_BUTTONGROUP);
     };
     document.getElementById('UICP0106').onclick = function (e) {
       e.preventDefault();
@@ -332,13 +333,13 @@
       e.preventDefault();
       handlers.openSampleHtml(PATH.MOMENT_CONVERT_TIME);
     };
-    document.getElementById('CTRL0704').onclick = function (e) {
+    document.getElementById('CTRL0707').onclick = function (e) {
       e.preventDefault();
-      handlers.openSampleHtml(PATH.MOMENT_CONVERT_ZENKAKU_HANKAKU);
+      handlers.openSampleHtml(PATH.JQUERY_CONVERT_ZENKAKU_HANKAKU);
     };
-    document.getElementById('CTRL0705').onclick = function (e) {
+    document.getElementById('CTRL0708').onclick = function (e) {
       e.preventDefault();
-      handlers.openSampleHtml(PATH.MOMENT_CONVERT_ZENKAKU_HANKAKU_FOR_KATAKANA);
+      handlers.openSampleHtml(PATH.JQUERY_CONVERT_ZENKAKU_HANKAKU_FOR_KATAKANA);
     };
     document.getElementById('CTRL0801').onclick = function (e) {
       e.preventDefault();
@@ -346,7 +347,7 @@
     };
     document.getElementById('CTRL0802').onclick = function (e) {
       e.preventDefault();
-      handlers.openSampleHtml(PATH.VALIDATION_LOCALE);
+      handlers.openSampleHtml(PATH.CUSTOM_VALIDATION);
     };
     document.getElementById('ASNC0101').onclick = function (e) {
       e.preventDefault();
@@ -362,13 +363,9 @@
     };
     document.getElementById('ASNC0104').onclick = function (e) {
       e.preventDefault();
-      handlers.openSampleHtml(PATH.DEFERRED_PROMISE_BRANCH_DONE);
-    };
-    document.getElementById('ASNC0105').onclick = function (e) {
-      e.preventDefault();
       handlers.openSampleHtml(PATH.DEFERRED_PROMISE_PARALLEL);
     };
-    document.getElementById('ASNC0106').onclick = function (e) {
+    document.getElementById('ASNC0105').onclick = function (e) {
       e.preventDefault();
       handlers.openSampleHtml(PATH.DEFERRED_PROMISE_AJAX);
     };
@@ -399,18 +396,6 @@
     document.getElementById('APND0201').onclick = function (e) {
       e.preventDefault();
       handlers.openSampleHtml(PATH.LODASH);
-    };
-    document.getElementById('APND0202').onclick = function (e) {
-      e.preventDefault();
-      handlers.openSampleHtml(PATH.UNDERSCORE_STRING_CONVERT_NUMBER);
-    };
-    document.getElementById('APND0203').onclick = function (e) {
-      e.preventDefault();
-      handlers.openSampleHtml(PATH.UNDERSCORE_STRING_PADDING);
-    };
-    document.getElementById('APND0204').onclick = function (e) {
-      e.preventDefault();
-      handlers.openSampleHtml(PATH.UNDERSCORE_STRING_TRIMMING);
     };
 
   }

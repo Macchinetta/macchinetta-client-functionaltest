@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 // prevent-continuous-click.js
 
@@ -21,9 +22,17 @@ $(function () {
       url : $form.attr('action'),
       type : $form.attr('method'),
       data : $form.serialize()
+  })
 
+    .then(function () {
+      console.log("成功")
+    })
+
+    .catch(function() {
+      console.log("失敗")
+    })
     // 通信処理完了後に実行する関数を指定する。
-    }).always(function () {
+    .then(function() {
 
       // 送信ボタンを再度活性化する。
       // ※ ボタンの活性状態の変化が分かり易いように、Ajax通信のレスポンスを

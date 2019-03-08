@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -17,6 +18,9 @@
     win: null,
     doc: null
   };
+
+  // message用定数定義
+  var MSG_COL_SORT = 'slickgrid-col-sort.';
 
   describe('GRID06 SlickGrid形式のテーブルに対して、カラムの並び替えができる', function () {
 
@@ -56,21 +60,15 @@
       m.executeSequentialWithDelay([
         function () {
 
-          // 画面のサイズを以下に固定することで、画面サイズによる座標のずれをなくす。
-          testObj.sandboxEl.width = 800;
-          testObj.sandboxEl.height = 600;
-        },
-        function () {
-
           // ヘッダのTitleセルをDurationセルの右横にドラッグ＆ドロップする
           titleHeader1.dispatchEvent(m.simulateEvent('mousedown', {
-            clientX: titleHeader1Left,
-            clientY: titleHeader1Top,
+            pageX: titleHeader1Left,
+            pageY: titleHeader1Top,
             which: 1
           }));
           titleHeader1.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: titleHeader2Right - 1,
-            clientY: titleHeader2Top,
+            pageX: titleHeader2Right - 1,
+            pageY: titleHeader2Top,
             which: 1
           }));
           titleHeader1.dispatchEvent(m.simulateEvent('mouseup'));
@@ -84,23 +82,23 @@
             * 2)2行目のTitle列の値が'タスク 0'になっていること
             */
           var durationCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:first-child');
-          assert.equal(durationCell.textContent, '5 days', 'GRID0601 001');
+          assert.equal(durationCell.textContent, '5 days', MSG_COL_SORT);
 
           var titleCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(2)');
-          assert.equal(titleCell.textContent, 'タスク 0', 'GRID0601 001');
+          assert.equal(titleCell.textContent, 'タスク 0', MSG_COL_SORT);
         },
         function () {
 
           // ヘッダのTitleセルをDurationセルの左横にドラッグ＆ドロップする
           titleHeader1 = testObj.doc.querySelector('.slick-header-column:nth-child(2)');
           titleHeader1.dispatchEvent(m.simulateEvent('mousedown', {
-            clientX: titleHeader2Left,
-            clientY: titleHeader2Top,
+            pageX: titleHeader2Left,
+            pageY: titleHeader2Top,
             which: 1
           }));
           titleHeader1.dispatchEvent(m.simulateEvent('mousemove', {
-            clientX: titleHeader1Left,
-            clientY: titleHeader1Top,
+            pageX: titleHeader1Left,
+            pageY: titleHeader1Top,
             which: 1
           }));
           titleHeader1.dispatchEvent(m.simulateEvent('mouseup'));
@@ -114,10 +112,10 @@
             * 2)2行目のTitle列の値が'5 days'になっていること
             */
           var durationCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:first-child');
-          assert.equal(durationCell.textContent, 'タスク 0', 'GRID0601 002');
+          assert.equal(durationCell.textContent, 'タスク 0', MSG_COL_SORT);
 
           var titleCell = testObj.doc.querySelector('.ui-widget-content:first-child .slick-cell:nth-child(2)');
-          assert.equal(titleCell.textContent, '5 days', 'GRID0601 002');
+          assert.equal(titleCell.textContent, '5 days', MSG_COL_SORT);
         },
         function () {
           done();

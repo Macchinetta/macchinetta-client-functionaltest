@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -58,7 +59,7 @@
           var td = testObj.doc.querySelector('.r5');
 
           // テーブルデータ6列目のエレメントが存在することを確認する。
-          assert.isNotNull(td, 'APEND0104 001');
+          assert.isNotNull(td, 'APND0104 001');
         },
         function () {
           done();

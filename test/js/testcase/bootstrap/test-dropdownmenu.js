@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -55,7 +56,7 @@
             */
           var dropdownmenu = testObj.doc.querySelector('.dropdown-menu');
           var dropdownmenuStyle = testObj.win.getComputedStyle(dropdownmenu).display;
-          assert.equal(dropdownmenuStyle, 'block', 'UICP0401 001');
+          assert.equal(dropdownmenuStyle, 'block', 'UICP0502 001');
         },
         function () {
 
@@ -71,7 +72,7 @@
             */
           var view = testObj.doc.querySelector('p:last-child');
           var viewTextContent = view.textContent;
-          assert.equal(viewTextContent, 'ユーザ情報登録がクリックされました。', 'UICP0401 002');
+          assert.equal(viewTextContent, 'ユーザ情報登録がクリックされました。', 'UICP0502 002');
         },
         function () {
           done();

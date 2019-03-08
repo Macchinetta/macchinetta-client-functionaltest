@@ -1,5 +1,6 @@
 /*
- * Copyright(c) 2017 NTT Corporation.
+ *
+ * Copyright(c) 2018 NTT Corporation.
  */
 /* depends on
  * - consts.js, which define constants
@@ -40,41 +41,34 @@
     it('GRID0801 001 スクロールをする際、表示範囲のデータを画面に表示できること。', function (done) {
       this.timeout(0);
 
-      var table = testObj.doc.querySelector('.slick-viewport');
-
       // テスト実行
-      m.executeSequentialWithSpecificDelay([
-        {
-          fn: function () {
+      m.executeSequentialWithDelay([
+        function () {
 
-            /**
-              * 確認項目1-1:グリッドの一番下の行の二列目の値をスクロールする前に確認する
-              * 1)グリッドの一番下の行の二列目の値が'28 days'であること
-              */
-            var lastTitleCell = testObj.doc.querySelector('#myGrid > div.slick-viewport > div > div:last-child > div.slick-cell:nth-child(2)');
-            assert.equal(lastTitleCell.textContent, '28 days', MSG_SLICKGRID_WITH_AJAX);
-          },
-          delay:1000
+          /**
+            * 確認項目1-1:グリッドの一番下の行の二列目の値をスクロールする前に確認する
+            * 1)グリッドの一番下の行の二列目の値が'28 days'であること
+            */
+          var lastTitleCell = testObj.doc.querySelector('#myGrid > div.slick-viewport > div > div:last-child > div.slick-cell:nth-child(2)');
+          assert.equal(lastTitleCell.textContent, '28 days', MSG_SLICKGRID_WITH_AJAX);
         },
-        {
-          fn: function () {
-            table.scrollTop = 450;
-          }
+        function () {
+          var table = testObj.doc.querySelector('.slick-viewport');
+          table.scrollTop = 450;
         },
-        {
-          fn: function () {
+        function () {
 
-            /**
-              * 確認項目1-2:グリッドの一番下の行の二列目の値をスクロールした後に確認する
-              * 1)グリッドの一番下の行の二列目の値が'43 days'であること
-              */
-            var lastTitleCell = testObj.doc.querySelector('#myGrid > div.slick-viewport > div > div:last-child > div.slick-cell:nth-child(2)');
-            assert.equal(lastTitleCell.textContent, '43 days', MSG_SLICKGRID_WITH_AJAX);
-            done();
-          },
-          delay:1000
+          /**
+            * 確認項目1-2:グリッドの一番下の行の二列目の値をスクロールした後に確認する
+            * 1)グリッドの一番下の行の二列目の値が'43 days'であること
+            */
+          var lastTitleCell = testObj.doc.querySelector('#myGrid > div.slick-viewport > div > div:last-child > div.slick-cell:nth-child(2)');
+          assert.equal(lastTitleCell.textContent, '43 days', MSG_SLICKGRID_WITH_AJAX);
+        },
+        function () {
+          done();
         }
-      ], 3000);
+      ], 1000);
     });
 
     // ----------------------- テストケース -----------------------
